@@ -41,7 +41,7 @@ public class TankDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //stops the motor when the commands stops running 
+    //stops the motor when the command stops running 
     RobotContainer.m_drivetrain.tankDrive(0, 0);
   }
 

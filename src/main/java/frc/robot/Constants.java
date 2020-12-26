@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalSource;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -37,6 +41,20 @@ public final class Constants {
 	public static final int DRIVETRAIN_LEFT_BACK_VICTORSPX = 2;
 	public static final int DRIVETRAIN_LEFT_FRONT_VICTORSPX = 3;
 
-    //port number on RoboRIO's DIO for shooter switch
-	public static final int SHOOTER_SWITCH = 0;
+    //port #s for SparkMAX motor controllers
+	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 0;
+	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 1;
+
+	public static final MotorType MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX = MotorType.kBrushless;
+    public static final MotorType MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX = MotorType.kBrushless;
+
+    //port number on RoboRIO's DIO
+	public static final int SHOOTER_SHOOTER_SWITCH = 0;
+
+	//DIO ports on RoboRIO
+	public static final DigitalSource SHOOTER_ENCODER_A = null;
+	public static final DigitalSource SHOOTER_ENCODER_B = null;
+
+	
+
 }

@@ -8,6 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
+
+
 
 public class ShooterSpeed extends CommandBase {
   /**
@@ -15,6 +19,8 @@ public class ShooterSpeed extends CommandBase {
    */
   public ShooterSpeed() {
     // Use addRequirements() here to declare subsystem dependencies.
+   //requires(Robot.m_Shooter);
+   addRequirements(RobotContainer.m_Shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -30,11 +36,14 @@ public class ShooterSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+   
+    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return RobotContainer.m_Shooter.isShooterSwitchClosed();
+   
   }
 }
