@@ -13,15 +13,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 
+
 public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
   CANSparkMax topWheelSparkMax = null;
   CANSparkMax bottomWheelSparkMax = null;
+  
 
   //this is for buttons 
-  DigitalInput shooterSwitch = null;
+  DigitalInput shooterSwitchSpeed1 = null;
+  DigitalInput shooterSwitchSpeed2 = null;
+  DigitalInput shooterSwitchSpeed3 = null;
+  DigitalInput shooterSwitchSpeed4 = null;
+  DigitalInput shooterSwitchShoot = null;
+
 
   //encoder
   Encoder shooterEncoder = null;
@@ -33,15 +40,17 @@ public class Shooter extends SubsystemBase {
     bottomWheelSparkMax = new CANSparkMax(Constants.SHOOTER_BOTTOM_WHEEL_SPARK_MAX, Constants.MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX);
 
     //this is for buttons 
-    shooterSwitch = new DigitalInput(Constants.SHOOTER_SHOOTER_SWITCH);
+    shooterSwitchSpeed1 = new DigitalInput(Constants.SHOOTER_SHOOTER_SWITCH_SPEED_1);
 
     //encoder
     shooterEncoder = new Encoder(Constants.SHOOTER_ENCODER_A, Constants.SHOOTER_ENCODER_B);
-  }
 
+    
+  }
+    //speed 1
   public boolean isShooterSwitchClosed(){
     //tells us when the shooter switch is pressed
-    return shooterSwitch.get();
+    return shooterSwitchSpeed1.get();
   }
 
   public double getShooterEncoderCount(){

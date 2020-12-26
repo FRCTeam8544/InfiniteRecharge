@@ -48,12 +48,12 @@ public final class Constants {
 	public static final MotorType MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX = MotorType.kBrushless;
     public static final MotorType MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX = MotorType.kBrushless;
 
-    //port number on RoboRIO's DIO
-	public static final int SHOOTER_SHOOTER_SWITCH = 0;
-
 	//DIO ports on RoboRIO
 	public static final DigitalSource SHOOTER_ENCODER_A = null;
 	public static final DigitalSource SHOOTER_ENCODER_B = null;
+
+	//port number on RoboRIO's DIO
+	public static final int SHOOTER_SHOOTER_SWITCH_SPEED_1 = 0;
 
 	
 
