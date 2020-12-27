@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.OurHID;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -26,10 +27,12 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  public static final OurHID m_OurHID = new OurHID();
   public static final Shooter m_Shooter = new Shooter();
   public static Joystick driverController = new Joystick(Constants.DRIVER_CONTROLLER);
   public static final Drivetrain m_drivetrain = new Drivetrain();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  
   
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);

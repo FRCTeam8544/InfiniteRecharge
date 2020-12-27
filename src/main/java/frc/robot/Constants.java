@@ -11,6 +11,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalSource;
 
+
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -45,6 +47,7 @@ public final class Constants {
 	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 0;
 	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 1;
 
+	//motortype for SparkMax (2nd parameter)
 	public static final MotorType MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX = MotorType.kBrushless;
     public static final MotorType MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX = MotorType.kBrushless;
 
@@ -54,6 +57,29 @@ public final class Constants {
 
 	//port number on RoboRIO's DIO
 	public static final int SHOOTER_SHOOTER_SWITCH_SPEED_1 = 0;
+
+	//shooter wheels speed combo #1
+	public static final double SHOOTER_TOP_WHEEL_SPEED_1 = .7;
+	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_1 = .7;
+
+	//shooter wheels speed combo #2
+	public static final double SHOOTER_TOP_WHEEL_SPEED_2 = .7;
+	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_2 = .7;
+
+	//shooter wheels speed combo #3
+	public static final double SHOOTER_TOP_WHEEL_SPEED_3 = .7;
+	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_3 = .7;
+
+	//shooter wheels speed combo #4
+	public static final double SHOOTER_TOP_WHEEL_SPEED_4 = .7;
+	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_4 = .7;
+
+	//port number for XboxController 
+	public static final int SHOOTER_SHOOTER_CONTROLLER = 0;
+
+
+
+
 
 	
 
