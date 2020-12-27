@@ -73,20 +73,20 @@ public class Shooter extends SubsystemBase {
     shooterEncoder.reset();
   }
 
-  public void set(int speed){
-    if (speed == 1){
+  public void set(int shooterSpeedCombo){
+    if (shooterSpeedCombo == 1){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_1);
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_1);
     }
-    else if (speed == 2){
+    else if (shooterSpeedCombo == 2){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_2);
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_2);
     }
-    else if (speed == 3){
+    else if (shooterSpeedCombo == 3){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_3);
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_3);
     }
-    else if (speed == 4){
+    else if (shooterSpeedCombo == 4){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_4);
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
     }

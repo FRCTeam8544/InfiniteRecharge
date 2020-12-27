@@ -14,12 +14,15 @@ import frc.robot.RobotContainer;
 
 public class ShooterSpeed extends CommandBase {
 
+    private final int m_shooterSpeedCombo;
+
   /**
    * Creates a new ShooterSpeed.
    */
-  public ShooterSpeed(){
+  public ShooterSpeed(int shooterSpeedCombo){
     // Use addRequirements() here to declare subsystem dependencies.
    //requires(Robot.m_Shooter);
+   m_shooterSpeedCombo = shooterSpeedCombo;
    addRequirements(RobotContainer.m_Shooter);
 
    
@@ -33,7 +36,7 @@ public class ShooterSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_Shooter.set(speed);
+    RobotContainer.m_Shooter.set(m_shooterSpeedCombo);
   }
 
   // Called once the command ends or is interrupted.
