@@ -10,6 +10,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalSource;
+import edu.wpi.first.wpilibj.GenericHID;
 
 
 
@@ -74,8 +75,26 @@ public final class Constants {
 	public static final double SHOOTER_TOP_WHEEL_SPEED_4 = .7;
 	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_4 = .7;
 
-	//port number for XboxController 
-	public static final int SHOOTER_SHOOTER_CONTROLLER = 0;
+	//Xbox Controller port #
+	public static final int OURHID_HID_CONTROLLER = 0;
+
+	//~THESE NUMBERS DO NOT CORRESPOND YET!!!
+	public static final int LOGITECH_CONTROLLER_BUTTON_A = 0;
+	public static final int LOGITECH_CONTROLLER_BUTTON_B = 1;
+	public static final int LOGITECH_CONTROLLER_BUTTON_X = 2;
+	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 3;
+
+	//change buttons here (not above)
+	public static final int OUR_HID_SHOOTER_SPEED_COMBO_1 = LOGITECH_CONTROLLER_BUTTON_A;
+	public static final int OUR_HID_SHOOTER_SPEED_COMBO_2 = LOGITECH_CONTROLLER_BUTTON_B;
+	public static final int OUR_HID_SHOOTER_SPEED_COMBO_3 = LOGITECH_CONTROLLER_BUTTON_X;
+	public static final int OUR_HID_SHOOTER_SPEED_COMBO_4 = LOGITECH_CONTROLLER_BUTTON_Y;
+
+	
+
+
+
+	
 
 
 

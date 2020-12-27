@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
+
 
 
 
@@ -34,9 +33,6 @@ public class Shooter extends SubsystemBase {
 
 
 
-  XboxController shooterController = null;
-  Button speed1Button = null;
-  
   //encoder
   Encoder shooterEncoder = null;
   
@@ -52,9 +48,7 @@ public class Shooter extends SubsystemBase {
     //encoder
     shooterEncoder = new Encoder(Constants.SHOOTER_ENCODER_A, Constants.SHOOTER_ENCODER_B);
 
-    //
-    shooterController = new XboxController(Constants.SHOOTER_SHOOTER_CONTROLLER);
-
+    
     //
     
     
