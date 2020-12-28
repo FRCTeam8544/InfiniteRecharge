@@ -7,11 +7,11 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
+
 
 
 
@@ -22,19 +22,12 @@ public class Shooter extends SubsystemBase {
    */
   CANSparkMax topWheelSparkMax = null;
   CANSparkMax bottomWheelSparkMax = null;
-  
+  DoubleSolenoid shootPiston = null;
 
   //this is for buttons 
-  DigitalInput shooterSwitchSpeed1 = null;
-  DigitalInput shooterSwitchSpeed2 = null;
-  DigitalInput shooterSwitchSpeed3 = null;
-  DigitalInput shooterSwitchSpeed4 = null;
-  DigitalInput shooterSwitchShoot = null;
+  
 
 
-
-  //encoder
-  Encoder shooterEncoder = null;
   
   public Shooter() {
     //constructor for shooter 
@@ -42,32 +35,12 @@ public class Shooter extends SubsystemBase {
     topWheelSparkMax = new CANSparkMax(Constants.SHOOTER_TOP_WHEEL_SPARK_MAX, Constants.MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX);    
     bottomWheelSparkMax = new CANSparkMax(Constants.SHOOTER_BOTTOM_WHEEL_SPARK_MAX, Constants.MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX);
 
-    //this is for buttons 
-    shooterSwitchSpeed1 = new DigitalInput(Constants.SHOOTER_SHOOTER_SWITCH_SPEED_1);
-
-    //encoder
-    shooterEncoder = new Encoder(Constants.SHOOTER_ENCODER_A, Constants.SHOOTER_ENCODER_B);
-
-    
-    //
-    
-    
-  }
-    //speed 1
-  public boolean isShooterSwitchClosed(){
-    //tells us when the shooter switch is pressed
-    return shooterSwitchSpeed1.get();
+    //piston for controlling ball entry into shooter wheels
+    shootPiston = new DoubleSolenoid(Constants.SHOOTER_PISTON_POSITION, Constants.SHOOTER_SHOOT_PISTON_FORWARD, Constants.SHOOTER_SHOOT_PISTON_REVERSE);
   }
 
-  public double getShooterEncoderCount(){
-    return shooterEncoder.get();
-  }
-
-  public void resetShooterEncoderCount(){
-    shooterEncoder.reset();
-  }
-
-  public void set(int shooterSpeedCombo){
+  public void setShooterSpeedCombo(int shooterSpeedCombo){
+    //this statements program the buttons for the shooter speeds
     if (shooterSpeedCombo == 1){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_1);
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_1);
@@ -85,12 +58,23 @@ public class Shooter extends SubsystemBase {
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
     }
     else {
-      //need to figure out error handling
+      //~need to figure out error handling
       //System.out.println ("Shooter.set Unknown Speed Specified");
     }
   }
-    //topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_1);
-    //bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_1);
+  //~try to figure out how to make int type --> string type w/o breaking the code 
+  public void setPistonPosition(int pistonPosition) {
+    if (pistonPosition == 0){
+    shootPiston.set(Constants.SHOOTER_PISTON_POSITION_REVERSE);
+    }
+    else if (pistonPosition == 1){
+    shootPiston.set(Constants.SHOOTER_PISTON_POSITION_FORWARD);
+    }
+    else{
+      //""
+    }
+  }
+  
 
   @Override
   public void periodic() {

@@ -36,7 +36,7 @@ public class ShooterSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_Shooter.set(m_shooterSpeedCombo);
+    RobotContainer.m_Shooter.setShooterSpeedCombo(m_shooterSpeedCombo);
   }
 
   // Called once the command ends or is interrupted.
@@ -47,7 +47,7 @@ public class ShooterSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.m_Shooter.isShooterSwitchClosed();
+    return false;
    
   }
 }

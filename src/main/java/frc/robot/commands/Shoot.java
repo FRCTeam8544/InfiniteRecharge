@@ -7,14 +7,20 @@
 
 package frc.robot.commands;
 
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
 public class Shoot extends CommandBase {
   /**
    * Creates a new Shoot.
    */
-  public Shoot() {
+  private final int m_pistonPosition;
+
+  public Shoot(int pistonPosition) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.m_Shooter);
+    m_pistonPosition = pistonPosition;
   }
 
   // Called when the command is initially scheduled.
@@ -25,6 +31,7 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.m_Shooter.setPistonPosition(m_pistonPosition);
   }
 
   // Called once the command ends or is interrupted.

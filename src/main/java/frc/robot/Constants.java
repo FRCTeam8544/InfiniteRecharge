@@ -9,8 +9,8 @@ package frc.robot;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalSource;
-import edu.wpi.first.wpilibj.GenericHID;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 
@@ -44,20 +44,13 @@ public final class Constants {
 	public static final int DRIVETRAIN_LEFT_BACK_VICTORSPX = 2;
 	public static final int DRIVETRAIN_LEFT_FRONT_VICTORSPX = 3;
 
-    //port #s for SparkMAX motor controllers
-	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 0;
-	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 1;
-
+	//port #s for SparkMAX motor controllers
+	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 0;
+	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 1;
+	
 	//motortype for SparkMax (2nd parameter)
 	public static final MotorType MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX = MotorType.kBrushless;
     public static final MotorType MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX = MotorType.kBrushless;
-
-	//DIO ports on RoboRIO
-	public static final DigitalSource SHOOTER_ENCODER_A = null;
-	public static final DigitalSource SHOOTER_ENCODER_B = null;
-
-	//port number on RoboRIO's DIO
-	public static final int SHOOTER_SHOOTER_SWITCH_SPEED_1 = 0;
 
 	//shooter wheels speed combo #1
 	public static final double SHOOTER_TOP_WHEEL_SPEED_1 = .7;
@@ -83,6 +76,7 @@ public final class Constants {
 	public static final int LOGITECH_CONTROLLER_BUTTON_B = 1;
 	public static final int LOGITECH_CONTROLLER_BUTTON_X = 2;
 	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 3;
+	public static final int LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK = 4;
 
 	//change buttons here (not above)
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_1 = LOGITECH_CONTROLLER_BUTTON_A;
@@ -90,6 +84,24 @@ public final class Constants {
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_3 = LOGITECH_CONTROLLER_BUTTON_X;
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_4 = LOGITECH_CONTROLLER_BUTTON_Y;
 
+	//piston button
+	public static final int OUR_HID_SHOOT_BUTTON = LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK;
+
+	//CAN ID
+	public static final int SHOOTER_PISTON_POSITION = 0;
+	//forward piston port
+	public static final int SHOOTER_SHOOT_PISTON_FORWARD = 0;
+	//reverse piston port
+	public static final int SHOOTER_SHOOT_PISTON_REVERSE = 0;
+	
+	//piston positions 
+	public static final Value SHOOTER_PISTON_POSITION_REVERSE = Value.kReverse;
+	public static final Value SHOOTER_PISTON_POSITION_FORWARD = Value.kForward;
+
+	
+
+
+	
 	
 
 
