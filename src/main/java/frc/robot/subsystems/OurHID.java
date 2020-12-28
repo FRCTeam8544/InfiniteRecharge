@@ -10,8 +10,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
-import frc.robot.commands.Shoot;
+import frc.robot.commands.RapidShoot;
 import frc.robot.commands.ShooterSpeed;
+import frc.robot.commands.SingleShot;
 import edu.wpi.first.wpilibj.Joystick;
 
 
@@ -26,7 +27,8 @@ public class OurHID extends SubsystemBase {
   JoystickButton ShooterSpeedCombo3 = null;
   JoystickButton ShooterSpeedCombo4 = null;
 
-  JoystickButton ShootButton = null;
+  JoystickButton rapidShootButton = null;
+  JoystickButton singleShotButton = null;
 
   Joystick HIDController = null;
   
@@ -39,7 +41,8 @@ public class OurHID extends SubsystemBase {
     ShooterSpeedCombo4 = new JoystickButton(HIDController, Constants.OUR_HID_SHOOTER_SPEED_COMBO_4);
 
     //this button will control the piston 
-    ShootButton = new JoystickButton(HIDController, Constants.OUR_HID_SHOOT_BUTTON);
+    rapidShootButton = new JoystickButton(HIDController, Constants.OUR_HID_RAPID_SHOOT_BUTTON);
+    singleShotButton = new JoystickButton(HIDController, Constants.OUR_HID_SINGLE_SHOT_BUTTON);
 
 
     
@@ -50,8 +53,11 @@ public class OurHID extends SubsystemBase {
    ShooterSpeedCombo4.whenPressed(new ShooterSpeed(4));
     
     //~maybe change trigger types 
-    ShootButton.whileHeld(new Shoot(true));
-    ShootButton.whenReleased(new Shoot(false));
+    rapidShootButton.whileHeld(new RapidShoot(true));
+    rapidShootButton.whenReleased(new RapidShoot(false));
+
+    singleShotButton.whenPressed(new SingleShot(true));
+    singleShotButton.whenReleased(new SingleShot(false));
   } 
 
   @Override

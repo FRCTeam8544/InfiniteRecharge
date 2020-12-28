@@ -77,6 +77,7 @@ public final class Constants {
 	public static final int LOGITECH_CONTROLLER_BUTTON_X = 2;
 	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 3;
 	public static final int LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK = 4;
+	public static final int LOGITECH_CONTROLLER_BUTTON_LEFT_BACK = 5;
 
 	//change buttons here (not above)
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_1 = LOGITECH_CONTROLLER_BUTTON_A;
@@ -84,8 +85,10 @@ public final class Constants {
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_3 = LOGITECH_CONTROLLER_BUTTON_X;
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_4 = LOGITECH_CONTROLLER_BUTTON_Y;
 
-	//piston button
-	public static final int OUR_HID_SHOOT_BUTTON = LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK;
+	//piston buttons
+	public static final int OUR_HID_RAPID_SHOOT_BUTTON = LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK;
+	public static final int OUR_HID_SINGLE_SHOT_BUTTON = LOGITECH_CONTROLLER_BUTTON_LEFT_BACK;
+
 
 	//CAN ID
 	public static final int SHOOTER_PISTON_POSITION = 0;
@@ -99,6 +102,8 @@ public final class Constants {
 	public static final Value SHOOTER_PISTON_POSITION_FORWARD = Value.kForward;
 
 	public static final int OUR_HID_DRIVER_CONTROLLER = 0;
+
+
 
 	
 
