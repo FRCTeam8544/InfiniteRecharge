@@ -15,9 +15,9 @@ public class Shoot extends CommandBase {
   /**
    * Creates a new Shoot.
    */
-  private final int m_pistonPosition;
+  private final boolean m_pistonPosition;
 
-  public Shoot(int pistonPosition) {
+  public Shoot(boolean pistonPosition) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_Shooter);
     m_pistonPosition = pistonPosition;

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
@@ -58,20 +59,19 @@ public class Shooter extends SubsystemBase {
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
     }
     else {
-      //~need to figure out error handling
-      //System.out.println ("Shooter.set Unknown Speed Specified");
+      new PrintCommand("Shooter.setShooterSpeedCombo Unknown Speed Specified");
     }
   }
   //~try to figure out how to make int type --> string type w/o breaking the code 
-  public void setPistonPosition(int pistonPosition) {
-    if (pistonPosition == 0){
+  public void setPistonPosition(boolean pistonPosition) {
+    if (pistonPosition == true){
     shootPiston.set(Constants.SHOOTER_PISTON_POSITION_REVERSE);
     }
-    else if (pistonPosition == 1){
+    else if (pistonPosition == false){
     shootPiston.set(Constants.SHOOTER_PISTON_POSITION_FORWARD);
     }
     else{
-      //""
+      new PrintCommand("Shooter.serPistonPosition Unknown Position Specified");
     }
   }
   

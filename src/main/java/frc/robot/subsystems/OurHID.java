@@ -29,6 +29,7 @@ public class OurHID extends SubsystemBase {
   JoystickButton ShootButton = null;
 
   Joystick HIDController = null;
+  
 
   public OurHID() {
     HIDController = new Joystick(Constants.OURHID_HID_CONTROLLER);
@@ -40,6 +41,7 @@ public class OurHID extends SubsystemBase {
     //this button will control the piston 
     ShootButton = new JoystickButton(HIDController, Constants.OUR_HID_SHOOT_BUTTON);
 
+
     
     //
    ShooterSpeedCombo1.whenPressed(new ShooterSpeed(1));
@@ -48,8 +50,8 @@ public class OurHID extends SubsystemBase {
    ShooterSpeedCombo4.whenPressed(new ShooterSpeed(4));
     
     //~maybe change trigger types 
-    ShootButton.whileHeld(new Shoot(0));
-    ShootButton.whenReleased(new Shoot(1));
+    ShootButton.whileHeld(new Shoot(true));
+    ShootButton.whenReleased(new Shoot(false));
   } 
 
   @Override

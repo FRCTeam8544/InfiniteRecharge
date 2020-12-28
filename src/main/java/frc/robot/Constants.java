@@ -98,6 +98,8 @@ public final class Constants {
 	public static final Value SHOOTER_PISTON_POSITION_REVERSE = Value.kReverse;
 	public static final Value SHOOTER_PISTON_POSITION_FORWARD = Value.kForward;
 
+	public static final int OUR_HID_DRIVER_CONTROLLER = 0;
+
 	
 
 
