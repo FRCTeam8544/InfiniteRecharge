@@ -19,7 +19,7 @@ public class RapidShoot extends CommandBase {
 
   public RapidShoot(boolean pistonPositionRapidShoot) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_Shooter);
+    //addRequirements(RobotContainer.m_Shooter);
     m_pistonPositionRapidShoot = pistonPositionRapidShoot;
   }
 

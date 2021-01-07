@@ -18,7 +18,7 @@ public class SingleShot extends CommandBase {
 
   public SingleShot(boolean pistonPositionSingleShot) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_Shooter);
+    //addRequirements(RobotContainer.m_Shooter);
     m_pistonPositionSingleShot = pistonPositionSingleShot;
   }
 
@@ -40,6 +40,8 @@ public class SingleShot extends CommandBase {
 
   // Returns true when the command should end.
   @Override
+  
+  
   public boolean isFinished() {
     return false;
   }

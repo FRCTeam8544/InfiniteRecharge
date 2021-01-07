@@ -23,7 +23,7 @@ public class ShooterSpeed extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
    //requires(Robot.m_Shooter);
    m_shooterSpeedCombo = shooterSpeedCombo;
-   addRequirements(RobotContainer.m_Shooter);
+   //addRequirements(RobotContainer.m_Shooter);
 
    
   }

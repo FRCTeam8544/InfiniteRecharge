@@ -28,7 +28,7 @@ public final class Constants {
     //these are the assigned ports for the VictorSP motors; change the port numbers here
     
     //This is port number for the Joystick; port number is found on the laptop in the Driverstation software
-    public static final int DRIVER_CONTROLLER = 0;
+    public static final int DRIVER_CONTROLLER = 1;
 
     //
 	//public static final String DRIVER_CONTROLLER_MOVE_AXIS = null;
@@ -69,14 +69,14 @@ public final class Constants {
 	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_4 = .7;
 
 	//Xbox Controller port #
-	public static final int OURHID_HID_CONTROLLER = 0;
+	public static final int OURHID_HID_CONTROLLER = 1;
 
 	//~THESE NUMBERS DO NOT CORRESPOND YET!!!
-	public static final int LOGITECH_CONTROLLER_BUTTON_A = 0;
-	public static final int LOGITECH_CONTROLLER_BUTTON_B = 1;
-	public static final int LOGITECH_CONTROLLER_BUTTON_X = 2;
-	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 3;
-	public static final int LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK = 4;
+	public static final int LOGITECH_CONTROLLER_BUTTON_A = 1;
+	public static final int LOGITECH_CONTROLLER_BUTTON_B = 2;
+	public static final int LOGITECH_CONTROLLER_BUTTON_X = 3;
+	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 4;
+	public static final int LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK = 6;
 	public static final int LOGITECH_CONTROLLER_BUTTON_LEFT_BACK = 5;
 
 	//change buttons here (not above)
@@ -101,7 +101,9 @@ public final class Constants {
 	public static final Value SHOOTER_PISTON_POSITION_REVERSE = Value.kReverse;
 	public static final Value SHOOTER_PISTON_POSITION_FORWARD = Value.kForward;
 
-	public static final int OUR_HID_DRIVER_CONTROLLER = 0;
+	//driver joysticks
+	public static final int OUR_HID_RIGHT_DRIVER_CONTROLLER = 0;
+	public static final int OUR_HID_LEFT_DRIVER_CONTROLLER = 0;
 
 
 

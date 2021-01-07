@@ -18,7 +18,7 @@ public class TankDrive extends CommandBase {
   public TankDrive() {
     //addRequirements means that when this command is excueted, all other commands using drivetrain will end
     //it also means that other commands that require drivetrain will stop this command and run instead when excueted
-    addRequirements(RobotContainer.m_drivetrain);
+    //addRequirements(RobotContainer.m_drivetrain);
   }
 
   // Called when the command is initially scheduled.

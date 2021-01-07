@@ -31,6 +31,8 @@ public class OurHID extends SubsystemBase {
   JoystickButton singleShotButton = null;
 
   Joystick HIDController = null;
+  Joystick rightDriverController = null;
+  Joystick leftDriverController = null;
   
 
   public OurHID() {
@@ -44,6 +46,8 @@ public class OurHID extends SubsystemBase {
     rapidShootButton = new JoystickButton(HIDController, Constants.OUR_HID_RAPID_SHOOT_BUTTON);
     singleShotButton = new JoystickButton(HIDController, Constants.OUR_HID_SINGLE_SHOT_BUTTON);
 
+    rightDriverController = new Joystick(Constants.OUR_HID_RIGHT_DRIVER_CONTROLLER);
+    leftDriverController = new Joystick(Constants.OUR_HID_LEFT_DRIVER_CONTROLLER);
 
     
     //
@@ -53,11 +57,11 @@ public class OurHID extends SubsystemBase {
    ShooterSpeedCombo4.whenPressed(new ShooterSpeed(4));
     
     //~maybe change trigger types 
-    rapidShootButton.whileHeld(new RapidShoot(true));
-    rapidShootButton.whenReleased(new RapidShoot(false));
+    rapidShootButton.whileHeld(new RapidShoot(true), false);
+    rapidShootButton.whenReleased(new RapidShoot(false), false);
 
-    singleShotButton.whenPressed(new SingleShot(true));
-    singleShotButton.whenReleased(new SingleShot(false));
+    singleShotButton.whenPressed(new SingleShot(true), false);
+    
   } 
 
   @Override

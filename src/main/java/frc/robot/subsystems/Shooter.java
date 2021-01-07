@@ -8,12 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
-
 
 
 
@@ -25,6 +24,7 @@ public class Shooter extends SubsystemBase {
   CANSparkMax topWheelSparkMax = null;
   CANSparkMax bottomWheelSparkMax = null;
   DoubleSolenoid shooterPiston = null;
+  
 
   //this is for buttons 
   
@@ -40,6 +40,12 @@ public class Shooter extends SubsystemBase {
     //piston for controlling ball entry into shooter wheels
     shooterPiston = new DoubleSolenoid(Constants.SHOOTER_PISTON_POSITION, Constants.SHOOTER_SHOOT_PISTON_FORWARD, Constants.SHOOTER_SHOOT_PISTON_REVERSE);
   }
+
+  //public void getRawAxis(double rightDriverController, double leftDriverController){
+    //if (driverController = true );
+    //rightDriverController.getRawAxis(Constants.DRIVER_CONTROLLER_RIGHT_MOVE_AXIS);
+    //leftDriverController.getRawAxis(Constants.DRIVER_CONTROLLER_LEFT_MOVE_AXIS);
+  //}
 
   public void setShooterSpeedCombo(int shooterSpeedCombo){
     //this statements program the buttons for the shooter speeds
@@ -60,7 +66,8 @@ public class Shooter extends SubsystemBase {
       bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
     }
     else {
-      new PrintCommand("Shooter.setShooterSpeedCombo Unknown Speed Specified");
+      //error message 
+      SmartDashboard.putNumber("Shooter.setShooterSpeedCombo Unknown Speed Specified: ", shooterSpeedCombo);
     }
   }
   //~try to figure out how to make int type --> string type w/o breaking the code 
@@ -76,9 +83,9 @@ public class Shooter extends SubsystemBase {
   public void setPistonPositionSingleShot(Boolean pistonPositionSingleShot){
 
   
-    if (pistonPositionSingleShot == true){
+   if (pistonPositionSingleShot == true){
       shooterPiston.set(Constants.SHOOTER_PISTON_POSITION_REVERSE);
-      new WaitUntilCommand(5);
+      new WaitCommand(5);
       shooterPiston.set(Constants.SHOOTER_PISTON_POSITION_FORWARD);
     }
     else {
