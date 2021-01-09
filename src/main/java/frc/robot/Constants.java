@@ -105,6 +105,21 @@ public final class Constants {
 	public static final int OUR_HID_RIGHT_DRIVER_CONTROLLER = 0;
 	public static final int OUR_HID_LEFT_DRIVER_CONTROLLER = 0;
 
+	
+	
+	// Winch motors for climber
+	public static final int WINCH_MOTOR = 3;
+
+	public static final MotorType WINCH_MOTOR_TYPE = MotorType.kBrushless;
+
+	
+	public static final int ARM_UP = 0;
+
+	public static final int ARM_DOWN_ROBOT_UP = 0;
+
+	public static final int LOGITECH_CONTROLLER_BUTTON_START = 10;
+	public static final int LOGITECH_CONTROLLER_BUTTON_BACK = 9;
+
 
 
 	

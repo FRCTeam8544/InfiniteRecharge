@@ -33,6 +33,10 @@ public class OurHID extends SubsystemBase {
   Joystick HIDController = null;
   Joystick rightDriverController = null;
   Joystick leftDriverController = null;
+
+
+  JoystickButton armUp = null;
+  JoystickButton armDownRobotUp = null; 
   
 
   public OurHID() {
@@ -49,6 +53,10 @@ public class OurHID extends SubsystemBase {
     rightDriverController = new Joystick(Constants.OUR_HID_RIGHT_DRIVER_CONTROLLER);
     leftDriverController = new Joystick(Constants.OUR_HID_LEFT_DRIVER_CONTROLLER);
 
+
+    armUp = new JoystickButton(HIDController, Constants.ARM_UP);
+    armDownRobotUp = new JoystickButton(HIDController, Constants.ARM_DOWN_ROBOT_UP);
+
     
     //
    ShooterSpeedCombo1.whenPressed(new ShooterSpeed(1));
@@ -61,9 +69,12 @@ public class OurHID extends SubsystemBase {
     rapidShootButton.whenReleased(new RapidShoot(false), false);
 
     singleShotButton.whenPressed(new SingleShot(true), false);
-    
-  } 
 
+    armUp.WhileHeld(new )
+
+
+
+  } 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
