@@ -37,6 +37,7 @@ public class Shooter extends SubsystemBase {
     topWheelSparkMax = new CANSparkMax(Constants.SHOOTER_TOP_WHEEL_SPARK_MAX, Constants.MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX);    
     bottomWheelSparkMax = new CANSparkMax(Constants.SHOOTER_BOTTOM_WHEEL_SPARK_MAX, Constants.MOTOR_TYPE_SHOOTER_BOTTOM_WHEEL_SPARK_MAX);
 
+
     //piston for controlling ball entry into shooter wheels
     shooterPiston = new DoubleSolenoid(Constants.SHOOTER_PISTON_POSITION, Constants.SHOOTER_SHOOT_PISTON_FORWARD, Constants.SHOOTER_SHOOT_PISTON_REVERSE);
   }
@@ -51,19 +52,23 @@ public class Shooter extends SubsystemBase {
     //this statements program the buttons for the shooter speeds
     if (shooterSpeedCombo == 1){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_1);
-      bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_1);
+      //bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_1);
+      bottomWheelSparkMax.follow(topWheelSparkMax);
     }
     else if (shooterSpeedCombo == 2){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_2);
-      bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_2);
+      //bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_2);
+      bottomWheelSparkMax.follow(topWheelSparkMax);
     }
     else if (shooterSpeedCombo == 3){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_3);
-      bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_3);
+      //bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_3);
+      bottomWheelSparkMax.follow(topWheelSparkMax);
     }
     else if (shooterSpeedCombo == 4){
       topWheelSparkMax.set(Constants.SHOOTER_TOP_WHEEL_SPEED_4);
-      bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
+      //bottomWheelSparkMax.set(Constants.SHOOTER_BOTTOM_WHEEL_SPEED_4);
+      bottomWheelSparkMax.follow(topWheelSparkMax);
     }
     else {
       //error message 

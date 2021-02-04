@@ -7,10 +7,13 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.EncoderType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 
 
@@ -25,28 +28,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
     //constants is the new RobotMap.java library (they are the same thing )
 
-    //these are the assigned ports for the VictorSP motors; change the port numbers here
     
-    //This is port number for the Joystick; port number is found on the laptop in the Driverstation software
-    public static final int DRIVER_CONTROLLER = 1;
-
-    //
-	//public static final String DRIVER_CONTROLLER_MOVE_AXIS = null;
-    //public static final String DRIVER_CONTROLLER_ROTATE_AXIS = null;
-    
-    //change values for our robot; values are specific to joysticks
-	public static final int DRIVER_CONTROLLER_LEFT_MOVE_AXIS = 1;
-	public static final int DRIVER_CONTROLLER_RIGHT_MOVE_AXIS = 2;
-    
-    
-	public static final int DRIVETRAIN_RIGHT_BACK_VICTORSPX = 0;
-	public static final int DRIVETRAIN_RIGHT_FRONT_VICTORSPX = 1;
-	public static final int DRIVETRAIN_LEFT_BACK_VICTORSPX = 2;
-	public static final int DRIVETRAIN_LEFT_FRONT_VICTORSPX = 3;
 
 	//port #s for SparkMAX motor controllers
-	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 0;
-	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 1;
+	public static final int SHOOTER_TOP_WHEEL_SPARK_MAX = 1;
+	public static final int SHOOTER_BOTTOM_WHEEL_SPARK_MAX = 2;
 	
 	//motortype for SparkMax (2nd parameter)
 	public static final MotorType MOTOR_TYPE_SHOOTER_TOP_WHEEL_SPARK_MAX = MotorType.kBrushless;
@@ -69,7 +55,7 @@ public final class Constants {
 	public static final double SHOOTER_BOTTOM_WHEEL_SPEED_4 = .7;
 
 	//Xbox Controller port #
-	public static final int OURHID_HID_CONTROLLER = 1;
+	public static final int OURHID_HID_CONTROLLER = 0;
 
 	//~THESE NUMBERS DO NOT CORRESPOND YET!!!
 	public static final int LOGITECH_CONTROLLER_BUTTON_A = 1;
@@ -78,6 +64,8 @@ public final class Constants {
 	public static final int LOGITECH_CONTROLLER_BUTTON_Y = 4;
 	public static final int LOGITECH_CONTROLLER_BUTTON_RIGHT_BACK = 6;
 	public static final int LOGITECH_CONTROLLER_BUTTON_LEFT_BACK = 5;
+	public static final int LOGITECH_CONTROLLER_JOYSTICK_LEFT = 1;
+	public static final int LOGITECH_CONTROLLER_JOYSTICK_RIGHT = 3;
 
 	//change buttons here (not above)
 	public static final int OUR_HID_SHOOTER_SPEED_COMBO_1 = LOGITECH_CONTROLLER_BUTTON_A;
@@ -101,25 +89,60 @@ public final class Constants {
 	public static final Value SHOOTER_PISTON_POSITION_REVERSE = Value.kReverse;
 	public static final Value SHOOTER_PISTON_POSITION_FORWARD = Value.kForward;
 
-	//driver joysticks
-	public static final int OUR_HID_RIGHT_DRIVER_CONTROLLER = 0;
-	public static final int OUR_HID_LEFT_DRIVER_CONTROLLER = 0;
+	public static final int DRIVETRAIN_DRIVE_MOTOR_1 = 1;
+	public static final int DRIVETRAIN_DRIVE_MOTOR_2 = 2;
+	public static final int DRIVETRAIN_DRIVE_MOTOR_3 = 3;
+	public static final int DRIVETRAIN_DRIVE_MOTOR_4 = 4;
+
+	public static final boolean DRIVETRAIN_DRIVE_MOTOR_1_INVERSION = false;
+	public static final boolean DRIVETRAIN_DRIVE_MOTOR_2_INVERSION = true;
+
+	public static final int OURHID_RIGHT_DRIVER_CONTROLLER_AXIS = LOGITECH_CONTROLLER_JOYSTICK_LEFT;
+	public static final int OURHID_LEFT_DRIVER_CONTROLLER_AXIS = LOGITECH_CONTROLLER_JOYSTICK_RIGHT;
+
+	public static final ControlMode ROBOT_DRIVE_MOTOR_1_CONTROL_MODE = ControlMode.PercentOutput;
+	public static final ControlMode ROBOT_DRIVE_MOTOR_2_CONTROL_MODE = ControlMode.PercentOutput;
+	public static final ControlMode ROBOT_DRIVE_MOTOR_3_CONTROL_MODE = ControlMode.Follower;
+	public static final ControlMode ROBOT_DRIVE_MOTOR_4_CONTROL_MODE = ControlMode.Follower;
+
+	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_1_MOTOR_TYPE = MotorType.kBrushless;
+	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_2_MOTOR_TYPE = MotorType.kBrushless;
+	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_3_MOTOR_TYPE = MotorType.kBrushless;
+	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_4_MOTOR_TYPE = MotorType.kBrushless;
+
+	public static final EncoderType ENCODERS_DRIVE_ENCODER_1_SENSOR_TYPE = EncoderType.kQuadrature;
+	public static final EncoderType ENCODERS_DRIVE_ENCODER_2_SENSOR_TYPE = EncoderType.kQuadrature;
+	public static final EncoderType ENCODERS_DRIVE_ENCODER_3_SENSOR_TYPE = EncoderType.kQuadrature;
+	public static final EncoderType ENCODERS_DRIVE_ENCODER_4_SENSOR_TYPE = EncoderType.kQuadrature;
+
+	public static final int ENCODERS_DRIVE_ENCODER_1_CPR = 90;
+	public static final int ENCODERS_DRIVE_ENCODER_2_CPR = 90;
+	public static final int ENCODERS_DRIVE_ENCODER_3_CPR = 90;
+	public static final int ENCODERS_DRIVE_ENCODER_4_CPR = 90;
+
+
+	public static final EncoderType ENCODERS_SHOOTER_ENCODER_1_SENSOR_TYPE = EncoderType.kQuadrature;
+	public static final EncoderType ENCODERS_SHOOTER_ENCODER_2_SENSOR_TYPE = EncoderType.kQuadrature;
+
+	public static final int ENCODERS_SHOOTER_ENCODER_1_CPR = 90;
+	public static final int ENCODERS_SHOOTER_ENCODER_2_CPR = 90;
+	
+	
+	public static final Port NAVX_GYRO_PORT = Port.kMXP;
+	public static final byte NAVX_GYRO_UPDATE_RATE = 50;
+
+	public static final boolean NAVX_GYRO_ENABLE_LOGGING = true;
+
+
 
 	
 	
-	// Winch motors for climber
-	public static final int WINCH_MOTOR = 3;
-
-	public static final MotorType WINCH_MOTOR_TYPE = MotorType.kBrushless;
 
 	
-	public static final int ARM_UP = 0;
-
-	public static final int ARM_DOWN_ROBOT_UP = 0;
-
-	public static final int LOGITECH_CONTROLLER_BUTTON_START = 10;
-	public static final int LOGITECH_CONTROLLER_BUTTON_BACK = 9;
-
+	
+	
+	
+	
 
 
 	

@@ -31,8 +31,8 @@ public class OurHID extends SubsystemBase {
   JoystickButton singleShotButton = null;
 
   Joystick HIDController = null;
-  Joystick rightDriverController = null;
-  Joystick leftDriverController = null;
+  JoystickButton rightDriverController = null;
+  JoystickButton leftDriverController = null;
 
 
   JoystickButton armUp = null;
@@ -50,12 +50,8 @@ public class OurHID extends SubsystemBase {
     rapidShootButton = new JoystickButton(HIDController, Constants.OUR_HID_RAPID_SHOOT_BUTTON);
     singleShotButton = new JoystickButton(HIDController, Constants.OUR_HID_SINGLE_SHOT_BUTTON);
 
-    rightDriverController = new Joystick(Constants.OUR_HID_RIGHT_DRIVER_CONTROLLER);
-    leftDriverController = new Joystick(Constants.OUR_HID_LEFT_DRIVER_CONTROLLER);
-
-
-    armUp = new JoystickButton(HIDController, Constants.ARM_UP);
-    armDownRobotUp = new JoystickButton(HIDController, Constants.ARM_DOWN_ROBOT_UP);
+    rightDriverController = new JoystickButton(HIDController, Constants.OURHID_RIGHT_DRIVER_CONTROLLER_AXIS);
+    leftDriverController = new JoystickButton(HIDController, Constants.OURHID_LEFT_DRIVER_CONTROLLER_AXIS);
 
     
     //
@@ -70,7 +66,7 @@ public class OurHID extends SubsystemBase {
 
     singleShotButton.whenPressed(new SingleShot(true), false);
 
-    armUp.WhileHeld(new )
+   
 
 
 

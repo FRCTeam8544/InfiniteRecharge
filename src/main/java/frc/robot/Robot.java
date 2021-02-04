@@ -7,9 +7,13 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -90,6 +94,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    //RobotContainer.m_drivetrain.driveMotor1.set(Constants.ROBOT_DRIVE_MOTOR_1_CONTROL_MODE, Constants.OURHID_LEFT_DRIVER_CONTROLLER_AXIS);
+    //RobotContainer.m_drivetrain.driveMotor2.set(Constants.ROBOT_DRIVE_MOTOR_2_CONTROL_MODE, Constants.OURHID_RIGHT_DRIVER_CONTROLLER_AXIS);
+    //RobotContainer.m_drivetrain.driveMotor3.set(Constants.ROBOT_DRIVE_MOTOR_3_CONTROL_MODE, Constants.DRIVETRAIN_DRIVE_MOTOR_1);
+    //RobotContainer.m_drivetrain.driveMotor4.set(Constants.ROBOT_DRIVE_MOTOR_4_CONTROL_MODE,Constants.DRIVETRAIN_DRIVE_MOTOR_2);
+  
+    RobotContainer.m_drivetrain.driveMotor1.set(Constants.OURHID_LEFT_DRIVER_CONTROLLER_AXIS);
+    RobotContainer.m_drivetrain.driveMotor3.follow(RobotContainer.m_drivetrain.driveMotor1);
+    RobotContainer.m_drivetrain.driveMotor2.set(Constants.OURHID_RIGHT_DRIVER_CONTROLLER_AXIS);
+    RobotContainer.m_drivetrain.driveMotor4.follow(RobotContainer.m_drivetrain.driveMotor2);
   }
 
   /**
