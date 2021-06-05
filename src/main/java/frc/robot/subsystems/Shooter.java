@@ -4,61 +4,65 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import net.thefletcher.revrobotics.CANSparkMax;
-import net.thefletcher.revrobotics.enums.MotorType;
+import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-public CANSparkMax topShooterMotor = null;
-CANSparkMax bottomShooterMotor = null;
-public SpeedControllerGroup topAndBottomShooterMotor = null;
+  CANSparkMax topShooterWheel;
+  CANSparkMax bottomShooterWheel;
+
+  CANEncoder topWheelEncoder;
+  CANEncoder bottomWheelEncoder;
 
   public Shooter() {
-    topShooterMotor = new CANSparkMax(1, MotorType.kBrushless);
-    bottomShooterMotor = new CANSparkMax(2, MotorType.kBrushless);
-    topAndBottomShooterMotor = new SpeedControllerGroup(topShooterMotor, bottomShooterMotor);
-    topShooterMotor.restoreFactoryDefaults();
-    bottomShooterMotor.restoreFactoryDefaults();
+    topShooterWheel = new CANSparkMax(Constants.SHOOTER_TOP_SHOOTER_WHEEL_ID, Constants.SHOOTER_TOP_SHOOTER_WHEEL_MOTORTYPE);
+    bottomShooterWheel = new CANSparkMax(Constants.SHOOTER_BOTTOM_SHOOTER_WHEEL_ID, Constants.SHOOTER_BOTTOM_SHOOTER_WHEEL_MOTORTYPE);
 
-    bottomShooterMotor.setInverted(false);
-    topShooterMotor.setInverted(true);
+    topShooterWheel.restoreFactoryDefaults();
+    bottomShooterWheel.restoreFactoryDefaults();
 
-    
+    topShooterWheel.setInverted(Constants.SHOOTER_TOP_SHOOTER_WHEEL_INVERSION);
+    bottomShooterWheel.setInverted(Constants.SHOOTER_BOTTOM_SHOOTER_WHEEL_INVERSION);
 
+    topWheelEncoder = topShooterWheel.getEncoder();
+    bottomWheelEncoder = bottomShooterWheel.getEncoder();
   }
 
-  public void setShooterJoystick(double wheelSpeed) {
-    topAndBottomShooterMotor.set(wheelSpeed);
-  }
-
-  public void setShooterSpeed(int shooterSpeedCombo){
-    if (shooterSpeedCombo == 1){
-      topShooterMotor.set(-.35);
-      bottomShooterMotor.set(-.35);
-      SmartDashboard.putNumber("Shooter Speed Combo 1: ", topShooterMotor.get());
+  //method to set specific speeds
+  //colors correspond to the color of the button (I may change this because it might be a stupid way of doing it)
+  //each if statement corresponds to a different speed and button --> robotContainer for button mappings
+  //@change shooter speeds to correct values
+  public void setShooterSpeed(String shooterSpeed){
+    if (shooterSpeed == "red"){
+      topShooterWheel.set(.8);
+      bottomShooterWheel.set(.8);
     }
-    else if (shooterSpeedCombo == 2){
-      topShooterMotor.set(-.40);
-      bottomShooterMotor.set(-.40);
-      SmartDashboard.putNumber("Shooter Speed Combo 2: ", topShooterMotor.get() + bottomShooterMotor.get());
+    else if (shooterSpeed == "blue"){
+      topShooterWheel.set(.6);
+      bottomShooterWheel.set(.6);
     }
-    else if (shooterSpeedCombo == 3){
-      topShooterMotor.set(-.8);
-      bottomShooterMotor.set(-.8);
-      SmartDashboard.putNumber("Shooter Speed Combo 3: ", topShooterMotor.get() + bottomShooterMotor.get());
+    else if (shooterSpeed == "green"){
+      topShooterWheel.set(.8);
+      bottomShooterWheel.set(.8);
     }
-    else if (shooterSpeedCombo == 4){
-      topShooterMotor.set(-.45);
-      bottomShooterMotor.set(-.45);
-      SmartDashboard.putNumber("Shooter Speed Combo 4: ", topShooterMotor.get() + bottomShooterMotor.get());
+    else if (shooterSpeed == "yellow"){
+      topShooterWheel.set(.8);
+      bottomShooterWheel.set(.8);
     }
     else {
-      SmartDashboard.putNumber("Shooter Speed Combo set to unspecified value: ", shooterSpeedCombo);
+      SmartDashboard.putString("SetShooterSpeed: ", "Unknown button specified");
     }
+  }
+
+  //sets both shooter speed controllers to zero (i.e. stopping the motors)
+  public void stopShooter(){
+    topShooterWheel.set(0);
+    bottomShooterWheel.set(0);
   }
 
   @Override

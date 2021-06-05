@@ -4,33 +4,27 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.feederDrumJoystick;
-import frc.robot.commands.shooterSpeedJoystick;
-import frc.robot.commands.tankDrive;
-import frc.robot.commands.Autonomous.DriveTurn;
-import frc.robot.commands.Autonomous.Turn90;
-import frc.robot.commands.Autonomous.barrelRacingPath;
-import frc.robot.commands.Autonomous.driveDistance;
-import frc.robot.commands.Autonomous.driveForward;
-import frc.robot.commands.Autonomous.encoderTurn90;
-import frc.robot.commands.Autonomous.encoderTurn90Left;
-import frc.robot.commands.Autonomous.slalomPath;
-import frc.robot.commands.Autonomous.timerTurn90Left;
-import frc.robot.commands.Autonomous.timerTurn90Right;
+import frc.robot.commands.AutoDriveCommands.BarrelRacingPath;
+import frc.robot.commands.AutoDriveCommands.BouncePath;
+import frc.robot.commands.AutoDriveCommands.DriveDistance;
+import frc.robot.commands.AutoDriveCommands.SlalomPath;
+import frc.robot.commands.DrumCommands.DrumPulse;
+import frc.robot.commands.DrumCommands.DrumSpeed;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TankDrive;
+import frc.robot.commands.AutoDriveCommands.TurnAngle90;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.FeederDrum;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.navX;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -39,36 +33,41 @@ import frc.robot.subsystems.navX;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  //all of my subsystems are defined here 
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final DriveTrain m_driveTrain = new DriveTrain();
+  private final Drum m_drum = new Drum();
+  private final IntakeArm m_intakeArm = new IntakeArm();
+  private final Shooter m_shooter = new Shooter();
 
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  public static final DriveTrain m_driveTrain = new DriveTrain();
-  public static final Command m_driveForward = new driveForward(60);
-  public static final navX m_navx = new navX();
-  public static final Command m_driveTurn = new DriveTurn();
-  //public static final Command m_driveReverse = new driveReverse(24);
-  public static final Command m_timerTurn90Right = new timerTurn90Right();
-  public static final Command m_timerTurn90Left = new timerTurn90Left();
-  public static final Command m_barrelRacingPath = new barrelRacingPath(m_driveTrain);
-  public static final Command m_encoderTurn90Left = new encoderTurn90Left();
-  public static final Command m_driveDistance = new driveDistance(-.3, 60);
-  public static final Command m_encoderTurn90 = new encoderTurn90(-.3, .3, 9.75);
-  public static final Command m_slalomPath = new slalomPath();
-  public static final FeederDrum m_feederDrum = new FeederDrum();
-  public static final Shooter m_shooter = new Shooter();
-  public static final Intake m_intake = new Intake();
-  public static final  Joystick logitechController = new Joystick(3);
-  
-   
-  
+  //my commands are defined here 
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  //drum commands
+  private final Command m_drumPulse = new DrumPulse(m_drum);
+  private final Command m_drumSpeed = new DrumSpeed(m_drum);
+  //auto commands
+  private final Command m_barrelRacingPath = new BarrelRacingPath();
+  private final Command m_bouncePath = new BouncePath();
+  private final Command m_slalomPath = new SlalomPath();
+  private final Command m_driveDistance = new DriveDistance(m_driveTrain, 0, 0);
+  private final Command m_turnAngle90 = new TurnAngle90(m_driveTrain, 0, 0, 0);
+  // tank drive 
+  private final Command m_tankDrive = new TankDrive(m_driveTrain);
+
+  //these are my joysticks --> define buttons under the configure button bindings
+  //@should this be private??
+  public static final Joystick leftDriveController = new Joystick(Constants.ROBOTCONTAINER_LEFT_DRIVE_CONTROLLER_PORT);
+  public static final Joystick rightDriveController = new Joystick(Constants.ROBOTCONTAINER_RIGHT_DRIVE_CONTROLLER_PORT);
+  public static final Joystick HIDController = new Joystick(Constants.ROBOTCONTAINER_HID_CONTROLLER_PORT);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_driveTrain.setDefaultCommand(new tankDrive());
-    //m_shooter.setDefaultCommand(new shooterSpeedJoystick());
-    m_feederDrum.setDefaultCommand(new feederDrumJoystick());
     // Configure the button bindings
     configureButtonBindings();
+
+    //default commands for subsystems
+    m_driveTrain.setDefaultCommand(m_tankDrive);
+    m_drum.setDefaultCommand(m_drumSpeed);
   }
 
   /**
@@ -78,25 +77,35 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
-   new JoystickButton(logitechController, 5).whenPressed(()-> RobotContainer.m_feederDrum.drumMotor.set(ControlMode.PercentOutput, .3))
-   .whenReleased(()-> RobotContainer.m_feederDrum.drumMotor.set(ControlMode.PercentOutput, 0));
-  
-   //This controls our shooter speed
-   //The button sets the method in the shooter subsystem to an int between 1 - 4. This then tells the method which if statement to call. This sets the speed.
-   // "->" seperates the parameters from implementation (this is a lamba thingy), so basically is seperates the parameters of the whenPressed method from the implemenation of the command method?
-   new JoystickButton(logitechController, 1).whenPressed(()-> RobotContainer.m_shooter.setShooterSpeed(1))
-   .whenReleased(()-> RobotContainer.m_shooter.topAndBottomShooterMotor.set(0));
+  //shooter wheel buttons --> each button has a pressed which turns it on and a released which turns it off (stop shooter method is in shooter subsystem)
+  //each color corresponds to specific button on controller (I could also use letters but colors were easier to see from distance and easier to recognize right away)
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_B)
+  .whenPressed(() -> m_shooter.setShooterSpeed("red"))
+  .whenReleased(() -> m_shooter.stopShooter());
 
-   new JoystickButton(logitechController, 2).whenPressed(()-> RobotContainer.m_shooter.setShooterSpeed(2))
-  .whenReleased(()-> RobotContainer.m_shooter.topAndBottomShooterMotor.set(0));
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_X)
+  .whenPressed(() -> m_shooter.setShooterSpeed("blue"))
+  .whenReleased(() -> m_shooter.stopShooter());
 
-   new JoystickButton(logitechController, 3).whenPressed(()-> RobotContainer.m_shooter.setShooterSpeed(3))
-   .whenReleased(()-> RobotContainer.m_shooter.topAndBottomShooterMotor.set(0));
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_Y)
+  .whenPressed(() -> m_shooter.setShooterSpeed("yellow"))
+  .whenReleased(() -> m_shooter.stopShooter());
 
-   new JoystickButton(logitechController, 4).whenPressed(()-> RobotContainer.m_shooter.setShooterSpeed(4))
-   .whenReleased(()-> RobotContainer.m_shooter.topAndBottomShooterMotor.set(0));
-  }
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_A)
+  .whenPressed(() -> m_shooter.setShooterSpeed("green"))
+  .whenReleased(() -> m_shooter.stopShooter());
+
+  //drum motor pulse --> drum turns on for 1 sec and then stops and then turns on for 1 sec and off thus creating pulse 
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
+  .whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
+
+  //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
+  .whenPressed(()-> m_intakeArm.setArmMotorSpeed(.2))
+  .whenReleased(()-> m_intakeArm.stopArmMotor());
+}
+
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -105,7 +114,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_slalomPath;
-  
+    return m_autoCommand;
   }
 }

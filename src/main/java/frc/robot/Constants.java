@@ -4,9 +4,8 @@
 
 package frc.robot;
 
-import net.thefletcher.revrobotics.enums.MotorType;
-
-import edu.wpi.first.wpilibj.SPI.Port;
+import com.revrobotics.EncoderType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -17,25 +16,71 @@ import edu.wpi.first.wpilibj.SPI.Port;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //drivetrain
+	public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID = 5;
+    public static final MotorType DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final int DRIVETRAIN_BACK_LEFT_DRIVE_MOTOR_ID = 6;
+    public static final MotorType DRIVETRAIN_BACK_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final int DRIVETRAIN_FRONT_RIGHt_DRIVE_MOTOR_ID = 3;
+    public static final MotorType DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final int DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_ID = 4;
+    public static final MotorType DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final boolean DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_INVERSION = false;
+    public static final boolean DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_INVERSION = true;
 
-	//driveTrain
-	public static final int DRIVETRAIN_DRIVE_MOTOR_1 = 3;
-	public static final int DRIVETRAIN_DRIVE_MOTOR_3 = 4;
-	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_1_TYPE = MotorType.kBrushless;
-	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_3_TYPE = MotorType.kBrushless;
-	public static final int DRIVETRAIN_DRIVE_MOTOR_2 = 5;
-	public static final int DRIVETRAIN_DRIVE_MOTOR_4 = 6;
-	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_2_TYPE = MotorType.kBrushless;
-	public static final MotorType DRIVETRAIN_DRIVE_MOTOR_4_TYPE = MotorType.kBrushless;
-	public static final boolean DRIVETRAIN_DRIVE_MOTOR_1_INVERSION = false;
-	public static final boolean DRIVETRAIN_DRIVE_MOTOR_2_INVERSION = false;
-	public static final int DRIVETRAIN_LEFT_JOYSTICK_CONTROLLER = 0;
-	public static final int DRIVETRAIN_RIGHT_JOYSTICK_CONTROLLER = 1;
+    public static final EncoderType DRIVETRAIN_FRONT_LEFT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
+    public static final int DRIVETRAIN_FRONT_LEFT_ENCODER_CPR = 42;
+    
+	public static final EncoderType DRIVETRAIN_BACK_LEFT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
+    public static final int DRIVETRAIN_BACK_LEFT_ENCODER_CPR = 42;
+    
+	public static final EncoderType DRIVETRAIN_FRONT_RIGHT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
+    public static final int DRIVETRAIN_FRONT_RIGHT_ENCODER_CPR = 42;
+    
+	public static final EncoderType DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
+	public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
 
+    public static final double DRIVETRAIN_CLIP_VALUE = .5;
 
-	public static final Port NAVX_GYRO_PORT = null;
-	public static final byte NAVX_GYRO_UPDATE_RATE = 0;
-	public static final boolean NAVX_GYRO_ENABLE_LOGGING = false;
-	
-	public static final double CLIPVALUE = .62;
-}
+    //drum
+    public static final int DRUM_DRUM_MOTOR_ID = 3;
+
+    //intakeArm
+    public static final int INTAKEARM_ARM_MOTOR_ID = 1;
+            //channels = 0 or 1 
+    public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
+    public static final int INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL = 1;
+    
+    //shooter
+	public static final int SHOOTER_TOP_SHOOTER_WHEEL_ID = 1;
+    public static final MotorType SHOOTER_TOP_SHOOTER_WHEEL_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final int SHOOTER_BOTTOM_SHOOTER_WHEEL_ID = 2;
+    public static final MotorType SHOOTER_BOTTOM_SHOOTER_WHEEL_MOTORTYPE = MotorType.kBrushless;
+    
+	public static final boolean SHOOTER_TOP_SHOOTER_WHEEL_INVERSION = false;
+    public static final boolean SHOOTER_BOTTOM_SHOOTER_WHEEL_INVERSION = true;
+    
+    //robotcontainer
+	public static final int ROBOTCONTAINER_LEFT_DRIVE_CONTROLLER_PORT = 0;
+    public static final int ROBOTCONTAINER_RIGHT_DRIVE_CONTROLLER_PORT = 1;
+    public static final int ROBOTCONTAINER_HID_CONTROLLER_PORT = 2;
+        //logitech controller button numbers
+    public static final int LOGITECH_BUTTON_A = 2;
+    public static final int LOGITECH_BUTTON_B = 3;
+    public static final int LOGITECH_BUTTON_X = 1;
+    public static final int LOGITECH_BUTTON_Y = 4;
+    public static final int LOGITECH_BUTTON_LEFT_TRIGGER = 7;
+    public static final int LOGITECH_BUTTON_RIGHT_TRIGGER = 8;
+        //buttons on HIDController
+	public static final int ROBOTCONTAINER_BUTTON_NUMBER_B = LOGITECH_BUTTON_B;
+	public static final int ROBOTCONTAINER_BUTTON_NUMBER_X = LOGITECH_BUTTON_X;
+	public static final int ROBOTCONTAINER_BUTTON_NUMBER_Y = LOGITECH_BUTTON_Y;
+    public static final int ROBOTCONTAINER_BUTTON_NUMBER_A = LOGITECH_BUTTON_A;
+	public static final int ROBOTCONTAINER_BUTTON_LEFT_TRIGGER = LOGITECH_BUTTON_LEFT_TRIGGER;
+	public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
+	}

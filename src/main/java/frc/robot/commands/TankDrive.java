@@ -4,57 +4,41 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveTrain;
 
 
-public class tankDrive extends CommandBase {
-  /** Creates a new tankDrive. */
-  public tankDrive() {
-    addRequirements(RobotContainer.m_driveTrain);
+public class TankDrive extends CommandBase {
+  /** Creates a new TankDrive. */
+  DriveTrain m_drivetrain;
+  public double leftSpeed, rightSpeed;
+  
+  public TankDrive(DriveTrain drive) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_drivetrain = drive;
+    leftSpeed =  RobotContainer.leftDriveController.getRawAxis(1);
+    rightSpeed = RobotContainer.rightDriveController.getRawAxis(1);
+    addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*double stick1 = RobotContainer.m_driveTrain.HIDController.getRawAxis(-1);
-    double stick2 = RobotContainer.m_driveTrain.HIDController.getRawAxis(-3);
-    RobotContainer.m_driveTrain.driveMotor1.set(stick1);
-    RobotContainer.m_driveTrain.driveMotor2.set(stick2);*/
-    //double leftSpeed = RobotContainer.m_driveTrain.leftController.set(RobotContainer.m_driveTrain.leftJoystickValue);
-
-    
-
-    //double leftSpeed = RobotContainer.m_driveTrain.leftController.getRawAxis(1);
-    //double rightSpeed = RobotContainer.m_driveTrain.rightController.getRawAxis(1);
-
-    //left joystick exponential acceleration
-    double leftJoystickOutput = RobotContainer.m_driveTrain.leftController.getRawAxis(1);
-    double leftJoystickValue = (.3 * leftJoystickOutput + .7 * (Math.pow(leftJoystickOutput, 3)));
-    
-
-    //right joystick exponential acceleration
-    double rightJoystickOutput = RobotContainer.m_driveTrain.rightController.getRawAxis(1);
-    double rightJoystickValue = (.3 * rightJoystickOutput + .7 * (Math.pow(rightJoystickOutput, 3)));
-    
-    
-    RobotContainer.m_driveTrain.tankDrive(RobotContainer.m_driveTrain.clip(leftJoystickValue), RobotContainer.m_driveTrain.clip(rightJoystickValue));
-    SmartDashboard.putString("TankDrive was Called: ", "tankDrive");
-   // RobotContainer.m_driveTrain.getIdleModeSetting(RobotContainer.m_driveTrain.driveMotor1);
+    //mulitplying joystick values by the rate equation
+  m_drivetrain.tankDrive(m_drivetrain.rampRate(leftSpeed), m_drivetrain.rampRate(rightSpeed));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.m_driveTrain.tankDrive(0, 0);
+    m_drivetrain.tankDrive(0, 0);
   }
-
 
   // Returns true when the command should end.
   @Override
