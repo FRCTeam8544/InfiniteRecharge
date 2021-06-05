@@ -74,13 +74,18 @@ public final class Constants {
     public static final int LOGITECH_BUTTON_B = 3;
     public static final int LOGITECH_BUTTON_X = 1;
     public static final int LOGITECH_BUTTON_Y = 4;
+    public static final int LOGITECH_BUTTON_LEFT_THUMB = 5;
     public static final int LOGITECH_BUTTON_LEFT_TRIGGER = 7;
     public static final int LOGITECH_BUTTON_RIGHT_TRIGGER = 8;
         //buttons on HIDController
+            //shooter buttons
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_B = LOGITECH_BUTTON_B;
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_X = LOGITECH_BUTTON_X;
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_Y = LOGITECH_BUTTON_Y;
     public static final int ROBOTCONTAINER_BUTTON_NUMBER_A = LOGITECH_BUTTON_A;
+            //intake arm buttons
 	public static final int ROBOTCONTAINER_BUTTON_LEFT_TRIGGER = LOGITECH_BUTTON_LEFT_TRIGGER;
-	public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
+    public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
+            //drum pulse buttons
+	public static final int ROBOTCONTAINER_BUTTON_LEFT_THUMB = LOGITECH_BUTTON_LEFT_THUMB;
 	}

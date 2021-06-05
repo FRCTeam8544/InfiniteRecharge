@@ -96,12 +96,17 @@ public class RobotContainer {
   .whenReleased(() -> m_shooter.stopShooter());
 
   //drum motor pulse --> drum turns on for 1 sec and then stops and then turns on for 1 sec and off thus creating pulse 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_THUMB)
   .whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
 
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
+  //up for arm 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
-  .whenPressed(()-> m_intakeArm.setArmMotorSpeed(.2))
+  .whileHeld(()-> m_intakeArm.setArmMotorSpeed(.1))
+  .whenReleased(()-> m_intakeArm.stopArmMotor());
+  //down for arm 
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
+  .whileHeld(()-> m_intakeArm.setArmMotorSpeed(-.1))
   .whenReleased(()-> m_intakeArm.stopArmMotor());
 }
 
