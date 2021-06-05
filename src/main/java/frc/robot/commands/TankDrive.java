@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
@@ -13,25 +14,30 @@ public class TankDrive extends CommandBase {
   /** Creates a new TankDrive. */
   DriveTrain m_drivetrain;
   public double leftSpeed, rightSpeed;
+  public static int tankDriveCount;
   
   public TankDrive(DriveTrain drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drive;
-    leftSpeed =  RobotContainer.leftDriveController.getRawAxis(1);
-    rightSpeed = RobotContainer.rightDriveController.getRawAxis(1);
     addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putString("Tank Drive was: ", "initialized");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    leftSpeed =  RobotContainer.leftDriveController.getRawAxis(1);
+    rightSpeed = RobotContainer.rightDriveController.getRawAxis(1);
     //mulitplying joystick values by the rate equation
   m_drivetrain.tankDrive(m_drivetrain.rampRate(leftSpeed), m_drivetrain.rampRate(rightSpeed));
+
+
+  
   }
 
   // Called once the command ends or is interrupted.

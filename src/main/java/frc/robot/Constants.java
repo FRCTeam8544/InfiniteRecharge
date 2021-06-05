@@ -4,8 +4,8 @@
 
 package frc.robot;
 
-import com.revrobotics.EncoderType;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import net.thefletcher.revrobotics.enums.EncoderType;
+import net.thefletcher.revrobotics.enums.MotorType;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean

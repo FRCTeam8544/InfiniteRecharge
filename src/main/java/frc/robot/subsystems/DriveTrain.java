@@ -4,17 +4,19 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
+
+import net.thefletcher.revrobotics.CANEncoder;
+import net.thefletcher.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
-  CANSparkMax frontLeftDriveMotor;
+  public CANSparkMax frontLeftDriveMotor;
   CANSparkMax backLeftDriveMotor;
   CANSparkMax frontRightDriveMotor;
   CANSparkMax backRightDriveMotor;

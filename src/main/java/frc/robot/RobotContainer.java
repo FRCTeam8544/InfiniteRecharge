@@ -102,12 +102,9 @@ public class RobotContainer {
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
   //up for arm 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
-  .whileHeld(()-> m_intakeArm.setArmMotorSpeed(.1))
+  .whenPressed(()-> m_intakeArm.setArmMotorSpeed(.1))
   .whenReleased(()-> m_intakeArm.stopArmMotor());
   //down for arm 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
-  .whileHeld(()-> m_intakeArm.setArmMotorSpeed(-.1))
-  .whenReleased(()-> m_intakeArm.stopArmMotor());
 }
 
 
