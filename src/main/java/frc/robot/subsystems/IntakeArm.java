@@ -14,8 +14,8 @@ public class IntakeArm extends SubsystemBase {
   /** Creates a new IntakeArm. */
   WPI_VictorSPX armMotor;
 
-  DigitalInput topArmLimitSwitch;
-  DigitalInput bottomArmLimitSwitch;
+  public DigitalInput topArmLimitSwitch;
+  public DigitalInput bottomArmLimitSwitch;
 
   public IntakeArm() {
   armMotor = new WPI_VictorSPX(Constants.INTAKEARM_ARM_MOTOR_ID);
@@ -30,10 +30,19 @@ public class IntakeArm extends SubsystemBase {
     armMotor.set(speed);
   }
 
+  public void topLimitSwitchPosition () {
+    topArmLimitSwitch.get();
+  }
+  public void bottomLimitSwitchPosition () {
+    bottomArmLimitSwitch.get();
+  }
+
+  
   //testing to see whether or not limit switches have been triggered --> if they are motors stop; otherwise motors continue at set speed with button
   public void setArmMotorSpeed(double speed){
     if (speed > 0){
-      if (topArmLimitSwitch.get()){
+      //null is placed in front for wiring purposes so it is wired the way the rest of team would like 
+      if (!topArmLimitSwitch.get()){
         stopArmMotor();
       }
       else {
@@ -42,7 +51,8 @@ public class IntakeArm extends SubsystemBase {
     }
 
     else {
-      if (bottomArmLimitSwitch.get()){
+      //null is placed in front for wiring purposes so it is wired the way the rest of team would like 
+      if (!bottomArmLimitSwitch.get()){
         stopArmMotor();
       }
       else {

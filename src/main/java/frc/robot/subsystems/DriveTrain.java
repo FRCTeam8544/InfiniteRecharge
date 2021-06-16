@@ -73,20 +73,22 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double rampRate(double speed){
-    //ramp rate calculation
     double rawSpeed = speed;
     double clippedSpeed;
+    //this changes the linear progression of the speed which the joystick sets to a curved progression so it takes longer for the speed to reach full speed
+    //graph for ramp rate -  https://www.desmos.com/calculator/shzdalzidh
+    double rampSpeed = (.4 * (rawSpeed) + .6 * (Math.pow(rawSpeed, 3)));
   
-    //tests whether rawSpeed is negative or positive then set it to either raw speed or clip value then it puts it into the ramp rate equation to continue to make it a curved function
-    if ((-Constants.DRIVETRAIN_CLIP_VALUE < rawSpeed) && (rawSpeed < Constants.DRIVETRAIN_CLIP_VALUE)){
-      clippedSpeed = rawSpeed;
-    } else if (rawSpeed > 0) {
+    //tests the speed from the ramp equation against a preset value to change the greatest and lowest speed the robot can go 
+    if ((-Constants.DRIVETRAIN_CLIP_VALUE < rampSpeed) && (rampSpeed < Constants.DRIVETRAIN_CLIP_VALUE)){
+      clippedSpeed = rampSpeed;
+    } else if (rampSpeed > 0) {
       clippedSpeed = Constants.DRIVETRAIN_CLIP_VALUE;
     } else {
       clippedSpeed = -Constants.DRIVETRAIN_CLIP_VALUE;
     }
-
-    return (.4 * (clippedSpeed) + .6 * (Math.pow(clippedSpeed, 3)));
+    //the clipped speed is the speed which the robot will move 
+    return clippedSpeed;
   }
 
   public void resetEncoders(){

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoDriveCommands.BarrelRacingPath;
 import frc.robot.commands.AutoDriveCommands.BouncePath;
 import frc.robot.commands.AutoDriveCommands.DriveDistance;
@@ -14,6 +15,7 @@ import frc.robot.commands.AutoDriveCommands.SlalomPath;
 import frc.robot.commands.DrumCommands.DrumPulse;
 import frc.robot.commands.DrumCommands.DrumSpeed;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeArmSensing;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.AutoDriveCommands.TurnAngle90;
 import frc.robot.subsystems.DriveTrain;
@@ -51,6 +53,7 @@ public class RobotContainer {
   private final Command m_slalomPath = new SlalomPath();
   private final Command m_driveDistance = new DriveDistance(m_driveTrain, 0, 0);
   private final Command m_turnAngle90 = new TurnAngle90(m_driveTrain, 0, 0, 0);
+  private final Command m_intakeArmSensing = new IntakeArmSensing(m_intakeArm);
   // tank drive 
   private final Command m_tankDrive = new TankDrive(m_driveTrain);
 
@@ -67,7 +70,8 @@ public class RobotContainer {
 
     //default commands for subsystems
     m_driveTrain.setDefaultCommand(m_tankDrive);
-    m_drum.setDefaultCommand(m_drumSpeed);
+    //m_drum.setDefaultCommand(m_drumSpeed);
+    //m_intakeArm.setDefaultCommand(m_intakeArmSensing);
   }
 
   /**
@@ -84,8 +88,10 @@ public class RobotContainer {
   .whenReleased(() -> m_shooter.stopShooter());
 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_X)
-  .whenPressed(() -> m_shooter.setShooterSpeed("blue"))
-  .whenReleased(() -> m_shooter.stopShooter());
+  .whileHeld(() -> m_intakeArm.setArmMotorSpeed(.1))
+  .whenReleased(()-> m_intakeArm.stopArmMotor());
+  //.whenPressed(() -> m_shooter.setShooterSpeed("blue"))
+  //.whenReleased(() -> m_shooter.stopShooter());
 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_Y)
   .whenPressed(() -> m_shooter.setShooterSpeed("yellow"))
@@ -96,15 +102,16 @@ public class RobotContainer {
   .whenReleased(() -> m_shooter.stopShooter());
 
   //drum motor pulse --> drum turns on for 1 sec and then stops and then turns on for 1 sec and off thus creating pulse 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_THUMB)
-  .whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_THUMB)
+  //.whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
 
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
   //up for arm 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
-  .whenPressed(()-> m_intakeArm.setArmMotorSpeed(.1))
-  .whenReleased(()-> m_intakeArm.stopArmMotor());
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
+
   //down for arm 
+
+
 }
 
 
