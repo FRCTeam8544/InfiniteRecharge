@@ -4,12 +4,13 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
+import net.thefletcher.revrobotics.CANEncoder;
+import net.thefletcher.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */

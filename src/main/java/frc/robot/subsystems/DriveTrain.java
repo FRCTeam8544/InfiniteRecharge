@@ -4,17 +4,19 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
+
+import net.thefletcher.revrobotics.CANEncoder;
+import net.thefletcher.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
-  CANSparkMax frontLeftDriveMotor;
+  public CANSparkMax frontLeftDriveMotor;
   CANSparkMax backLeftDriveMotor;
   CANSparkMax frontRightDriveMotor;
   CANSparkMax backRightDriveMotor;
@@ -48,7 +50,7 @@ public class DriveTrain extends SubsystemBase {
     backLeftDriveMotor.follow(frontLeftDriveMotor);
 
     frontRightDriveMotor.setInverted(Constants.DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_INVERSION);
-    backLeftDriveMotor.follow(frontRightDriveMotor);
+    backRightDriveMotor.follow(frontRightDriveMotor);
 
 
     leftMotors = new SpeedControllerGroup(frontLeftDriveMotor, backLeftDriveMotor);
@@ -71,10 +73,22 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double rampRate(double speed){
-    //ramp rate calculation
-  double rawSpeed = speed;
-   double clippedSpeed = rawSpeed < Constants.DRIVETRAIN_CLIP_VALUE ? rawSpeed : Constants.DRIVETRAIN_CLIP_VALUE;
-    return (.4 * (clippedSpeed) + .6 * (Math.pow(clippedSpeed, 3)));
+    double rawSpeed = speed;
+    double clippedSpeed;
+    //this changes the linear progression of the speed which the joystick sets to a curved progression so it takes longer for the speed to reach full speed
+    //graph for ramp rate -  https://www.desmos.com/calculator/shzdalzidh
+    double rampSpeed = (.4 * (rawSpeed) + .6 * (Math.pow(rawSpeed, 3)));
+  
+    //tests the speed from the ramp equation against a preset value to change the greatest and lowest speed the robot can go 
+    if ((-Constants.DRIVETRAIN_CLIP_VALUE < rampSpeed) && (rampSpeed < Constants.DRIVETRAIN_CLIP_VALUE)){
+      clippedSpeed = rampSpeed;
+    } else if (rampSpeed > 0) {
+      clippedSpeed = Constants.DRIVETRAIN_CLIP_VALUE;
+    } else {
+      clippedSpeed = -Constants.DRIVETRAIN_CLIP_VALUE;
+    }
+    //the clipped speed is the speed which the robot will move 
+    return clippedSpeed;
   }
 
   public void resetEncoders(){

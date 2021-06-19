@@ -4,8 +4,8 @@
 
 package frc.robot;
 
-import com.revrobotics.EncoderType;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import net.thefletcher.revrobotics.enums.EncoderType;
+import net.thefletcher.revrobotics.enums.MotorType;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -29,7 +29,7 @@ public final class Constants {
 	public static final int DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_ID = 4;
     public static final MotorType DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
     
-	public static final boolean DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_INVERSION = false;
+	public static final boolean DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_INVERSION = true;
     public static final boolean DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_INVERSION = true;
 
     public static final EncoderType DRIVETRAIN_FRONT_LEFT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
@@ -74,13 +74,18 @@ public final class Constants {
     public static final int LOGITECH_BUTTON_B = 3;
     public static final int LOGITECH_BUTTON_X = 1;
     public static final int LOGITECH_BUTTON_Y = 4;
+    public static final int LOGITECH_BUTTON_LEFT_THUMB = 5;
     public static final int LOGITECH_BUTTON_LEFT_TRIGGER = 7;
     public static final int LOGITECH_BUTTON_RIGHT_TRIGGER = 8;
         //buttons on HIDController
+            //shooter buttons
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_B = LOGITECH_BUTTON_B;
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_X = LOGITECH_BUTTON_X;
 	public static final int ROBOTCONTAINER_BUTTON_NUMBER_Y = LOGITECH_BUTTON_Y;
     public static final int ROBOTCONTAINER_BUTTON_NUMBER_A = LOGITECH_BUTTON_A;
+            //intake arm buttons
 	public static final int ROBOTCONTAINER_BUTTON_LEFT_TRIGGER = LOGITECH_BUTTON_LEFT_TRIGGER;
-	public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
+    public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
+            //drum pulse buttons
+	public static final int ROBOTCONTAINER_BUTTON_LEFT_THUMB = LOGITECH_BUTTON_LEFT_THUMB;
 	}
