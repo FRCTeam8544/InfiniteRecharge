@@ -70,7 +70,7 @@ public class RobotContainer {
 
     //default commands for subsystems
     m_driveTrain.setDefaultCommand(m_tankDrive);
-    //m_drum.setDefaultCommand(m_drumSpeed);
+    m_drum.setDefaultCommand(m_drumSpeed);
     //m_intakeArm.setDefaultCommand(m_intakeArmSensing);
   }
 
