@@ -33,6 +33,8 @@ public class TankDrive extends CommandBase {
   public void execute() {
     leftSpeed =  RobotContainer.leftDriveController.getRawAxis(1);
     rightSpeed = RobotContainer.rightDriveController.getRawAxis(1);
+   // SmartDashboard.putNumber("Left Joystick: ", leftSpeed);
+   // SmartDashboard.putNumber("Right Joystick: ", rightSpeed);
     //mulitplying joystick values by the rate equation
   m_drivetrain.tankDrive(m_drivetrain.rampRate(leftSpeed), m_drivetrain.rampRate(rightSpeed));
 
@@ -44,6 +46,7 @@ public class TankDrive extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_drivetrain.tankDrive(0, 0);
+ 
   }
 
   // Returns true when the command should end.

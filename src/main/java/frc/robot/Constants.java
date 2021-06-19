@@ -29,7 +29,7 @@ public final class Constants {
 	public static final int DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_ID = 4;
     public static final MotorType DRIVETRAIN_BACK_RIGHT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
     
-	public static final boolean DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_INVERSION = false;
+	public static final boolean DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_INVERSION = true;
     public static final boolean DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_INVERSION = true;
 
     public static final EncoderType DRIVETRAIN_FRONT_LEFT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
