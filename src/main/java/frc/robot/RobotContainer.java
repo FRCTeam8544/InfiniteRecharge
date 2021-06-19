@@ -14,8 +14,8 @@ import frc.robot.commands.AutoDriveCommands.DriveDistance;
 import frc.robot.commands.AutoDriveCommands.SlalomPath;
 import frc.robot.commands.DrumCommands.DrumPulse;
 import frc.robot.commands.DrumCommands.DrumSpeed;
+import frc.robot.commands.IntakeArmCommands.IntakeArmSensing;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeArmSensing;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.AutoDriveCommands.TurnAngle90;
 import frc.robot.subsystems.DriveTrain;
@@ -88,10 +88,8 @@ public class RobotContainer {
   .whenReleased(() -> m_shooter.stopShooter());
 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_X)
-  .whileHeld(() -> m_intakeArm.setArmMotorSpeed(.1))
-  .whenReleased(()-> m_intakeArm.stopArmMotor());
-  //.whenPressed(() -> m_shooter.setShooterSpeed("blue"))
-  //.whenReleased(() -> m_shooter.stopShooter());
+  .whenPressed(() -> m_shooter.setShooterSpeed("blue"))
+  .whenReleased(() -> m_shooter.stopShooter());
 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_Y)
   .whenPressed(() -> m_shooter.setShooterSpeed("yellow"))
@@ -106,11 +104,15 @@ public class RobotContainer {
   //.whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
 
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
-  //up for arm 
-  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
+  //up command for arm 
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
+  .whileHeld(() -> m_intakeArm.setArmMotorSpeed(.1))
+  .whenReleased(()-> m_intakeArm.stopArmMotor());
 
-  //down for arm 
-
+  //down command for arm
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
+  .whileHeld(() -> m_intakeArm.setArmMotorSpeed(-.1))
+  .whenReleased(() -> m_intakeArm.stopArmMotor());
 
 }
 
