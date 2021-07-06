@@ -59,6 +59,10 @@ public class Shooter extends SubsystemBase {
     }
   }
 
+  public void setPercentPower(double speed){
+    topShooterWheel.set(speed);
+    bottomShooterWheel.set(speed);
+  }
   //sets both shooter speed controllers to zero (i.e. stopping the motors)
   public void stopShooter(){
     topShooterWheel.set(0);
