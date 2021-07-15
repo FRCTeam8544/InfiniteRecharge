@@ -77,7 +77,7 @@ public class DriveTrain extends SubsystemBase {
     double clippedSpeed;
     //this changes the linear progression of the speed which the joystick sets to a curved progression so it takes longer for the speed to reach full speed
     //graph for ramp rate -  https://www.desmos.com/calculator/shzdalzidh
-    double rampSpeed = (.4 * (rawSpeed) + .6 * (Math.pow(rawSpeed, 3)));
+    double rampSpeed = (.25 * (rawSpeed) + .75 * (Math.pow(rawSpeed, 3)));
   
     //tests the speed from the ramp equation against a preset value to change the greatest and lowest speed the robot can go 
     if ((-Constants.DRIVETRAIN_CLIP_VALUE < rampSpeed) && (rampSpeed < Constants.DRIVETRAIN_CLIP_VALUE)){
