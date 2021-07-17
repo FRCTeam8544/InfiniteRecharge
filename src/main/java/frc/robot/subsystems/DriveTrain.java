@@ -48,7 +48,7 @@ public class DriveTrain extends SubsystemBase {
     backLeftDriveMotor.follow(frontLeftDriveMotor);
 
     frontRightDriveMotor.setInverted(Constants.DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR_INVERSION);
-    backLeftDriveMotor.follow(frontRightDriveMotor);
+    backRightDriveMotor.follow(frontRightDriveMotor);
 
 
     leftMotors = new SpeedControllerGroup(frontLeftDriveMotor, backLeftDriveMotor);

@@ -34,7 +34,7 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     //currentRM = # of rotations of the motor 
     m_drivetrain.currentRM(m_drivetrain.frontLeftEncoder);
-    m_drivetrain.tankDrive(m_speed + kP * m_drivetrain.error(), m_speed - kP * m_drivetrain.error());
+    m_drivetrain.tankDrive(-m_speed /*- kP * m_drivetrain.error()*/, -m_speed /*+ kP * m_drivetrain.error()*/);
   }
 
   // Called once the command ends or is interrupted.
@@ -52,8 +52,11 @@ public class DriveDistance extends CommandBase {
       return (m_drivetrain.currentRM(m_drivetrain.frontLeftEncoder) > m_drivetrain.revPerInchCalc(m_distance));
     }
     //negative encoder value --> changed sign to less than 
+    else if (m_drivetrain.currentRM(m_drivetrain.frontLeftEncoder) != 0) {
+      return ((-1) * m_drivetrain.currentRM(m_drivetrain.frontLeftEncoder) > m_drivetrain.revPerInchCalc(m_distance));
+    }
     else {
-      return (m_drivetrain.currentRM(m_drivetrain.frontLeftEncoder) < m_drivetrain.revPerInchCalc(m_distance));
+      return false;
     }
   }
 }

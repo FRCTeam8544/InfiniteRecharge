@@ -37,6 +37,7 @@ public class Shooter extends SubsystemBase {
   //colors correspond to the color of the button (I may change this because it might be a stupid way of doing it)
   //each if statement corresponds to a different speed and button --> robotContainer for button mappings
   //@change shooter speeds to correct values
+  //@
   public void setShooterSpeed(String shooterSpeed){
     if (shooterSpeed == "red"){
       topShooterWheel.set(.8);

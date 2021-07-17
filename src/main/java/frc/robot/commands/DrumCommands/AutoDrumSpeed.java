@@ -5,6 +5,7 @@
 package frc.robot.commands.DrumCommands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drum;
 
@@ -20,7 +21,7 @@ public class AutoDrumSpeed extends CommandBase {
     m_drum = drum;
     percentPower = speed;
     waitTime = timeToWait;
-
+    drumTimer = new Timer();
     addRequirements(m_drum);
   }
 
@@ -36,6 +37,8 @@ public class AutoDrumSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putString("Auto Drum was: ", "Executed");
+    
     /*This tests the value of the timer (in seconds) against a variable (whose value is set by us in the parameters of the command) to see 
     if enough time (in seconds) has passed to start the drum motor.
     The reason I have set it up this way is because I plan to use this command in a Parallel Deadline Group or Parallel Race Group (I have not
@@ -47,6 +50,7 @@ public class AutoDrumSpeed extends CommandBase {
     }
     else{
       m_drum.setDrumSpeed(0);
+    
     }
   }
 

@@ -5,6 +5,7 @@
 package frc.robot.commands.ShooterCommands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -20,6 +21,7 @@ public class AutoShooterSpeed extends CommandBase {
     m_shooter = shooter;
     percentPower = speed;
     lengthOfCommand = seconds;
+    shooterTimer = new Timer();
 
     addRequirements(m_shooter);
   }
@@ -36,6 +38,7 @@ public class AutoShooterSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putString("Auto Shoot was: ", "Executed");
     m_shooter.setPercentPower(percentPower);
   }
 
