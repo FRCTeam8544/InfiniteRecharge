@@ -62,10 +62,11 @@ public final class Constants {
     public static final int DRUM_DRUM_MOTOR_ID = 3;
 
     //intakeArm
-    public static final int INTAKEARM_ARM_MOTOR_ID = 1;
+    public static final int WINCH_ARM_MOTOR_ID = 1;
             //channels = 0 or 1 
-    public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
-    public static final int INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL = 1;
+    
+    // public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
+    // public static final int INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL = 1;
     
     //shooter
 	public static final int SHOOTER_TOP_SHOOTER_WHEEL_ID = 1;

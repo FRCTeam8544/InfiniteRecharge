@@ -22,7 +22,7 @@ import frc.robot.commands.AutoDriveCommands.TurnAngle90;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
@@ -41,7 +41,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Drum m_drum = new Drum();
-  private final IntakeArm m_intakeArm = new IntakeArm();
+  private final Climber m_climber = new Climber();
   private final Shooter m_shooter = new Shooter();
 
   //my commands are defined here 
@@ -111,8 +111,9 @@ public class RobotContainer {
 
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
-  .whenPressed(()-> m_intakeArm.setArmMotorSpeed(.2))
-  .whenReleased(()-> m_intakeArm.stopArmMotor());
+  // To Do: determine appropriate power value during testing  
+  .whenPressed(()-> m_climber.setMotorSpeed(.5))
+  .whenReleased(()-> m_climber.stopMotor());
 
   //drum motor buttons to move forward and backward
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_BACK)

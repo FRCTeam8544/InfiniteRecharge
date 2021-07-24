@@ -74,7 +74,7 @@ public class DriveTrain extends SubsystemBase {
     //ramp rate calculation
   double rawSpeed = speed;
    double clippedSpeed = rawSpeed < Constants.DRIVETRAIN_CLIP_VALUE ? rawSpeed : Constants.DRIVETRAIN_CLIP_VALUE;
-    return (.4 * (clippedSpeed) + .6 * (Math.pow(clippedSpeed, 3)));
+    return (.25 * (clippedSpeed) + .75 * (Math.pow(clippedSpeed, 3)));
   }
 
   public void resetEncoders(){
