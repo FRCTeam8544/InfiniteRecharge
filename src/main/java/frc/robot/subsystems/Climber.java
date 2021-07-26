@@ -14,10 +14,15 @@ public class Climber extends SubsystemBase {
   WPI_VictorSPX winchMotor;
 
   public Climber() {
-  winchMotor = new WPI_VictorSPX(Constants.WINCH_ARM_MOTOR_ID);
+    winchMotor = new WPI_VictorSPX(Constants.WINCH_ARM_MOTOR_ID);
+    // To Do: verify whether motor should be inverted during testing
+    winchMotor.setInverted(true);
+  }
 
-  // To Do: verify whether motor should be inverted during testing
-  winchMotor.setInverted(true);
+  public double rampRate(double joystickPosition){
+    // To Do: check whether .25 and .75 are the appropriate sensitivity values
+    double preClippedPower = (.25 * (joystickPosition) + .75 * (Math.pow(joystickPosition, 3)));
+    return preClippedPower < Constants.CLIMBER_CLIP_VALUE ? preClippedPower : Constants. CLIMBER_CLIP_VALUE;
   }
 
   public void setMotorSpeed (double speed){
@@ -29,7 +34,5 @@ public class Climber extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  public void periodic() {}
 }

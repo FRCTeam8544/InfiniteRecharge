@@ -56,7 +56,9 @@ public final class Constants {
 	public static final EncoderType DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
 	public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
 
-   
+   //climber
+   // To Do: Check whether clip value for climber motor's power should be 1.0
+   public static final double CLIMBER_CLIP_VALUE = 1.0;
 
     //drum
     public static final int DRUM_DRUM_MOTOR_ID = 3;

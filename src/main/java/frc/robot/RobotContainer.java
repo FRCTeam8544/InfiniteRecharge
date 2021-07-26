@@ -19,6 +19,7 @@ import frc.robot.commands.AutoShooterRoutine;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.AutoDriveCommands.TurnAngle90;
+import frc.robot.commands.ClimberDefault;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -58,10 +59,13 @@ public class RobotContainer {
   private final Command m_slalomPath = new SlalomPath();
   private final Command m_driveDistance = new DriveDistance(m_driveTrain, .35, 36);
   private final Command m_turnAngle90 = new TurnAngle90(m_driveTrain, 0, 0, 0);
-  // tank drive 
+  //tank drive 
   private final Command m_tankDrive = new TankDrive(m_driveTrain);
   //autonomous shooter routine
   private final Command m_autoShooterRoutine = new AutoShooterRoutine(m_drum, m_shooter, m_driveTrain);
+  //climber
+  private final Command m_climberDefault = new ClimberDefault(m_climber)
+
 
   //these are my joysticks --> define buttons under the configure button bindings
   //@should this be private??
@@ -77,7 +81,7 @@ public class RobotContainer {
     //default commands for subsystems
     m_driveTrain.setDefaultCommand(m_tankDrive);
     m_drum.setDefaultCommand(m_drumSpeed);
-   
+    m_climber.setDefaultCommand(m_climberDefault)
   }
 
   /**
@@ -112,7 +116,7 @@ public class RobotContainer {
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
   // To Do: determine appropriate power value during testing  
-  .whenPressed(()-> m_climber.setMotorSpeed(.5))
+  .whenPressed(()-> m_climber.setMotorSpeed(.1))
   .whenReleased(()-> m_climber.stopMotor());
 
   //drum motor buttons to move forward and backward
