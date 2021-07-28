@@ -64,7 +64,7 @@ public class RobotContainer {
   //autonomous shooter routine
   private final Command m_autoShooterRoutine = new AutoShooterRoutine(m_drum, m_shooter, m_driveTrain);
   //climber
-  private final Command m_climberDefault = new ClimberDefault(m_climber)
+  private final Command m_climberDefault = new ClimberDefault(m_climber);
 
 
   //these are my joysticks --> define buttons under the configure button bindings
@@ -81,7 +81,7 @@ public class RobotContainer {
     //default commands for subsystems
     m_driveTrain.setDefaultCommand(m_tankDrive);
     m_drum.setDefaultCommand(m_drumSpeed);
-    m_climber.setDefaultCommand(m_climberDefault)
+    m_climber.setDefaultCommand(m_climberDefault);
   }
 
   /**
