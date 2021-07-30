@@ -14,7 +14,7 @@ public class Climber extends SubsystemBase {
   WPI_VictorSPX winchMotor;
 
   public Climber() {
-    winchMotor = new WPI_VictorSPX(Constants.WINCH_ARM_MOTOR_ID);
+    winchMotor = new WPI_VictorSPX(Constants.CLIMBER_WINCH_ARM_MOTOR_ID);
     // To Do: verify whether motor should be inverted during testing
     winchMotor.setInverted(true);
   }

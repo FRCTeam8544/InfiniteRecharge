@@ -17,13 +17,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public final class Constants {
     //AutoShooterRoutine
-    public static final double AUTO_PERCENT_POWER_SHOOTER_WHEELS = 0.20;
-    public static final double AUTO_SHOOTER_RUNTIME = 7;
+    public static final double AUTO_PERCENT_POWER_SHOOTER_WHEELS = 0.36;
+    public static final double AUTO_SHOOTER_RUNTIME = 4;
 
-	public static final double AUTO_PERCENT_POWER_DRUM = 0.20;
+	public static final double AUTO_PERCENT_POWER_DRUM = 0.70;
     public static final double AUTO_DRUM_WAIT_TIME = 2;
     
-	public static final double AUTO_PERCENT_POWER_DRIVE = 0.35;
+	public static final double AUTO_PERCENT_POWER_DRIVE = -0.35;
     public static final double AUTO_DRIVE_DISTANCE_TO_TRAVEL_INCHES = 36;
     
     //drivetrain
@@ -64,7 +64,7 @@ public final class Constants {
     public static final int DRUM_DRUM_MOTOR_ID = 3;
 
     //intakeArm
-    public static final int WINCH_ARM_MOTOR_ID = 1;
+    public static final int CLIMBER_WINCH_ARM_MOTOR_ID = 1;
             //channels = 0 or 1 
     
     // public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
@@ -102,5 +102,6 @@ public final class Constants {
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
     public static final int ROBOTCONTAINER_BUTTON_LEFT_BACK = LOGITECH_BUTTON_LEFT_BACK;
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_BACK = LOGITECH_BUTTON_RIGHT_BACK;
+	
 
 	}
