@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,6 +29,7 @@ public class DriveTrain extends SubsystemBase {
   public CANEncoder backLeftEncoder;
   public CANEncoder frontRightEncoder;
   public CANEncoder backRightEncoder;
+  public DigitalInput navXJumper;
 
   public DriveTrain() {
     frontLeftDriveMotor = new CANSparkMax(Constants.DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID, Constants.DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE);
@@ -64,6 +66,7 @@ public class DriveTrain extends SubsystemBase {
     frontRightEncoder = frontRightDriveMotor.getEncoder(Constants.DRIVETRAIN_FRONT_RIGHT_ENCODER_ENCODERTYPE, Constants.DRIVETRAIN_FRONT_RIGHT_ENCODER_CPR);
     backRightEncoder = backRightDriveMotor.getEncoder(Constants.DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE, Constants.DRIVETRAIN_BACK_RIGHT_ENCODER_CPR);
 
+    navXJumper = new DigitalInput(Constants.DRIVETRAIN_NAVX_JUMPER_PORT);
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed){
