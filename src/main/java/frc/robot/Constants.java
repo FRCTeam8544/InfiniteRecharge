@@ -16,7 +16,19 @@ import net.thefletcher.revrobotics.enums.MotorType;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //AutoShooterRoutine
+    public static final double AUTO_PERCENT_POWER_SHOOTER_WHEELS = 0.36;
+    public static final double AUTO_SHOOTER_RUNTIME = 4;
+
+	public static final double AUTO_PERCENT_POWER_DRUM = 0.70;
+    public static final double AUTO_DRUM_WAIT_TIME = 2;
+    
+	public static final double AUTO_PERCENT_POWER_DRIVE = -0.35;
+    public static final double AUTO_DRIVE_DISTANCE_TO_TRAVEL_INCHES = 36;
+    
     //drivetrain
+    public static final double DRIVETRAIN_CLIP_VALUE = .5;
+
 	public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID = 5;
     public static final MotorType DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
     
@@ -42,18 +54,23 @@ public final class Constants {
     public static final int DRIVETRAIN_FRONT_RIGHT_ENCODER_CPR = 42;
     
 	public static final EncoderType DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
-	public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
+    public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
+    
+    public static final int DRIVETRAIN_DEMO_MODE_SLOW_PORT = 2;
+	public static final int DRIVETRAIN_DEMO_MODE_TURN_ONLY_PORT = 3;
 
-    public static final double DRIVETRAIN_CLIP_VALUE = .5;
-
+   //climber
+   // To Do: Check whether clip value for climber motor's power should be 1.0
+   public static final double CLIMBER_CLIP_VALUE = 1.0;
     //drum
     public static final int DRUM_DRUM_MOTOR_ID = 3;
 
     //intakeArm
-    public static final int INTAKEARM_ARM_MOTOR_ID = 1;
+    public static final int CLIMBER_WINCH_ARM_MOTOR_ID = 1;
             //channels = 0 or 1 
-    public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
-    public static final int INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL = 1;
+    
+    // public static final int INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL = 0;
+    // public static final int INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL = 1;
     
     //shooter
 	public static final int SHOOTER_TOP_SHOOTER_WHEEL_ID = 1;
@@ -74,7 +91,8 @@ public final class Constants {
     public static final int LOGITECH_BUTTON_B = 3;
     public static final int LOGITECH_BUTTON_X = 1;
     public static final int LOGITECH_BUTTON_Y = 4;
-    public static final int LOGITECH_BUTTON_LEFT_THUMB = 5;
+    public static final int LOGITECH_BUTTON_LEFT_BACK = 5;
+    public static final int LOGITECH_BUTTON_RIGHT_BACK = 6;
     public static final int LOGITECH_BUTTON_LEFT_TRIGGER = 7;
     public static final int LOGITECH_BUTTON_RIGHT_TRIGGER = 8;
         //buttons on HIDController
@@ -86,6 +104,9 @@ public final class Constants {
             //intake arm buttons
 	public static final int ROBOTCONTAINER_BUTTON_LEFT_TRIGGER = LOGITECH_BUTTON_LEFT_TRIGGER;
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
-            //drum pulse buttons
-	public static final int ROBOTCONTAINER_BUTTON_LEFT_THUMB = LOGITECH_BUTTON_LEFT_THUMB;
+    public static final int ROBOTCONTAINER_BUTTON_LEFT_BACK = LOGITECH_BUTTON_LEFT_BACK;
+    public static final int ROBOTCONTAINER_BUTTON_RIGHT_BACK = LOGITECH_BUTTON_RIGHT_BACK;
+	
+	
+
 	}

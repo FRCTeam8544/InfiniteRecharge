@@ -38,28 +38,33 @@ public class Shooter extends SubsystemBase {
   //colors correspond to the color of the button (I may change this because it might be a stupid way of doing it)
   //each if statement corresponds to a different speed and button --> robotContainer for button mappings
   //@change shooter speeds to correct values
+  //@
   public void setShooterSpeed(String shooterSpeed){
     if (shooterSpeed == "red"){
-      topShooterWheel.set(.8);
-      bottomShooterWheel.set(.8);
+      topShooterWheel.set(.2);
+      bottomShooterWheel.set(.2);
     }
     else if (shooterSpeed == "blue"){
-      topShooterWheel.set(.6);
-      bottomShooterWheel.set(.6);
+      topShooterWheel.set(.5);
+      bottomShooterWheel.set(.5);
     }
     else if (shooterSpeed == "green"){
       topShooterWheel.set(.8);
       bottomShooterWheel.set(.8);
     }
     else if (shooterSpeed == "yellow"){
-      topShooterWheel.set(.8);
-      bottomShooterWheel.set(.8);
+      topShooterWheel.set(1);
+      bottomShooterWheel.set(1);
     }
     else {
       SmartDashboard.putString("SetShooterSpeed: ", "Unknown button specified");
     }
   }
 
+  public void setPercentPower(double speed){
+    topShooterWheel.set(speed);
+    bottomShooterWheel.set(speed);
+  }
   //sets both shooter speed controllers to zero (i.e. stopping the motors)
   public void stopShooter(){
     topShooterWheel.set(0);

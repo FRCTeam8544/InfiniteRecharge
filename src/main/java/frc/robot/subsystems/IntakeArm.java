@@ -18,12 +18,12 @@ public class IntakeArm extends SubsystemBase {
   public DigitalInput bottomArmLimitSwitch;
 
   public IntakeArm() {
-  armMotor = new WPI_VictorSPX(Constants.INTAKEARM_ARM_MOTOR_ID);
+  //armMotor = new WPI_VictorSPX(Constants.INTAKEARM_ARM_MOTOR_ID);
 
   armMotor.setInverted(true);
 
-  topArmLimitSwitch = new DigitalInput(Constants.INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL);
-  bottomArmLimitSwitch = new DigitalInput(Constants.INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL);
+  //topArmLimitSwitch = new DigitalInput(Constants.INTAKEARM_TOP_ARM_LIMIT_SWITCH_CHANNEL);
+  //bottomArmLimitSwitch = new DigitalInput(Constants.INTAKEARM_BOTTOM_ARM_LIMIT_SWITCH_CHANNEL);
   }
 
   public void setMotorSpeed (double speed){
