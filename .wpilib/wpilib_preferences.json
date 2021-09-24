@@ -1,12 +1,6 @@
 {
-<<<<<<< HEAD
     "enableCppIntellisense": false,
     "currentLanguage": "java",
     "projectYear": "2021",
-=======
-    "currentLanguage": "none",
-    "enableCppIntellisense": false,
-    "projectYear": "none",
->>>>>>> autonomous_shooter_routine
     "teamNumber": 8544
 }
