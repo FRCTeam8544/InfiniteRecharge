@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
@@ -28,6 +30,9 @@ public class DriveTrain extends SubsystemBase {
   public CANEncoder backLeftEncoder;
   public CANEncoder frontRightEncoder;
   public CANEncoder backRightEncoder;
+
+  public DigitalInput demoModeSlow;
+  public DigitalInput demoModeTurnOnly;
 
   public DriveTrain() {
     frontLeftDriveMotor = new CANSparkMax(Constants.DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID, Constants.DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE);
@@ -64,17 +69,46 @@ public class DriveTrain extends SubsystemBase {
     frontRightEncoder = frontRightDriveMotor.getEncoder(Constants.DRIVETRAIN_FRONT_RIGHT_ENCODER_ENCODERTYPE, Constants.DRIVETRAIN_FRONT_RIGHT_ENCODER_CPR);
     backRightEncoder = backRightDriveMotor.getEncoder(Constants.DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE, Constants.DRIVETRAIN_BACK_RIGHT_ENCODER_CPR);
 
+    demoModeSlow = new DigitalInput(Constants.DRIVETRAIN_DEMO_MODE_SLOW_PORT);
+    demoModeTurnOnly = new DigitalInput(Constants.DRIVETRAIN_DEMO_MODE_TURN_ONLY_PORT);
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed){
    robotDrive.tankDrive(leftSpeed, rightSpeed);
   }
 
-  public double rampRate(double speed){
+  public void turnOnlyDrive(double leftSpeed){
+    double leftJoystickValue = leftSpeed;
+    if (leftJoystickValue >= 0.2){
+      robotDrive.tankDrive(0.3, -0.3);
+    }
+    else if (leftJoystickValue <= -0.2){
+      robotDrive.tankDrive(-0.3, 0.3);
+    }
+  }
+
+  public double rampRate(double speed, double rawSpeedMultiplierInteger, double rawSpeedMultiplierCube, double speedClipValue){
     //ramp rate calculation
   double rawSpeed = speed;
-   double clippedSpeed = rawSpeed < Constants.DRIVETRAIN_CLIP_VALUE ? rawSpeed : Constants.DRIVETRAIN_CLIP_VALUE;
-    return (.25 * (clippedSpeed) + .75 * (Math.pow(clippedSpeed, 3)));
+  double clippedSpeed;
+  double rampedSpeed;
+  double leftMultiplier = rawSpeedMultiplierInteger;
+  double rightMultiplier = rawSpeedMultiplierCube;
+  double clipValue = speedClipValue;
+
+  rampedSpeed = (leftMultiplier * (rawSpeed) + rightMultiplier * (Math.pow(rawSpeed, 3)));
+
+  if (rampedSpeed > clipValue) {
+      clippedSpeed = clipValue;
+    }
+    else if (rampedSpeed < -clipValue) {
+      clippedSpeed = -clipValue; 
+    }
+    else {
+      clippedSpeed = rampedSpeed;
+    };
+
+ return clippedSpeed;
   }
 
   public void resetEncoders(){
@@ -105,6 +139,10 @@ public class DriveTrain extends SubsystemBase {
 
   public double error(){
     return (frontLeftEncoder.getPosition() - frontRightEncoder.getPosition());
+  }
+
+  public void printDemoSwitch() {
+    SmartDashboard.putBoolean("Switch Reading: ", demoModeSlow.get());
   }
 
   @Override

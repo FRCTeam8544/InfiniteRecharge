@@ -27,7 +27,7 @@ public final class Constants {
     public static final double AUTO_DRIVE_DISTANCE_TO_TRAVEL_INCHES = 36;
     
     //drivetrain
-    public static final double DRIVETRAIN_CLIP_VALUE = 1.0;
+    public static final double DRIVETRAIN_CLIP_VALUE = .5;
 
 	public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID = 5;
     public static final MotorType DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
@@ -54,12 +54,14 @@ public final class Constants {
     public static final int DRIVETRAIN_FRONT_RIGHT_ENCODER_CPR = 42;
     
 	public static final EncoderType DRIVETRAIN_BACK_RIGHT_ENCODER_ENCODERTYPE = EncoderType.kHallSensor;
-	public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
+    public static final int DRIVETRAIN_BACK_RIGHT_ENCODER_CPR = 42;
+    
+    public static final int DRIVETRAIN_DEMO_MODE_SLOW_PORT = 2;
+	public static final int DRIVETRAIN_DEMO_MODE_TURN_ONLY_PORT = 3;
 
    //climber
    // To Do: Check whether clip value for climber motor's power should be 1.0
    public static final double CLIMBER_CLIP_VALUE = 1.0;
-
     //drum
     public static final int DRUM_DRUM_MOTOR_ID = 3;
 
@@ -102,6 +104,7 @@ public final class Constants {
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
     public static final int ROBOTCONTAINER_BUTTON_LEFT_BACK = LOGITECH_BUTTON_LEFT_BACK;
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_BACK = LOGITECH_BUTTON_RIGHT_BACK;
+	
 	
 
 	}

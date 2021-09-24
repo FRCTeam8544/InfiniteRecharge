@@ -19,6 +19,8 @@ import frc.robot.commands.AutoShooterRoutine;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.AutoDriveCommands.TurnAngle90;
+import frc.robot.commands.DemoModes.SlowDemoMode;
+import frc.robot.commands.DemoModes.TurnOnlyDemoMode;
 import frc.robot.commands.ClimberDefault;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Drum;
@@ -61,6 +63,10 @@ public class RobotContainer {
   private final Command m_turnAngle90 = new TurnAngle90(m_driveTrain, 0, 0, 0);
   //tank drive 
   private final Command m_tankDrive = new TankDrive(m_driveTrain);
+  //demo modes
+  private final Command m_slowDemoMode = new SlowDemoMode(m_driveTrain);
+  private final Command m_turnOnlyDemoMode = new TurnOnlyDemoMode(m_driveTrain);
+  
   //autonomous shooter routine
   private final Command m_autoShooterRoutine = new AutoShooterRoutine(m_drum, m_shooter, m_driveTrain);
   //climber
@@ -79,7 +85,17 @@ public class RobotContainer {
     configureButtonBindings();
 
     //default commands for subsystems
-    m_driveTrain.setDefaultCommand(m_tankDrive);
+    if (m_driveTrain.demoModeSlow.get() != true){
+      m_driveTrain.setDefaultCommand(m_slowDemoMode);
+    }
+    else if (m_driveTrain.demoModeTurnOnly.get() != true){
+      m_driveTrain.setDefaultCommand(m_turnOnlyDemoMode);
+    }
+    else {
+      m_driveTrain.setDefaultCommand(m_tankDrive);
+    }
+    
+
     m_drum.setDefaultCommand(m_drumSpeed);
     m_climber.setDefaultCommand(m_climberDefault);
   }
@@ -110,23 +126,23 @@ public class RobotContainer {
   .whenReleased(() -> m_shooter.stopShooter());
 
   //drum motor pulse --> drum turns on for 1 sec and then stops and then turns on for 1 sec and off thus creating pulse 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
-  .whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_TRIGGER)
+  //.whenPressed(new SequentialCommandGroup(new DrumPulse(m_drum), new WaitCommand(.5),new DrumPulse(m_drum), new WaitCommand(.5), new DrumPulse(m_drum), new WaitCommand(.5)));
 
   //setting intake arm speed --> command sets speed and tests for limit switch states --> look at intakearm subsystem for command specifics 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER)
   // To Do: determine appropriate power value during testing  
-  .whenPressed(()-> m_climber.setMotorSpeed(.1))
-  .whenReleased(()-> m_climber.stopMotor());
+  //.whenPressed(()-> m_climber.setMotorSpeed(.1))
+  //.whenReleased(()-> m_climber.stopMotor());
 
   //drum motor buttons to move forward and backward
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_BACK)
-  .whenPressed(() -> m_drum.setDrumSpeed(0.2))
-  .whenReleased(() -> m_drum.drumMotorOff());
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_BACK)
+  //.whenPressed(() -> m_drum.setDrumSpeed(0.2))
+  //.whenReleased(() -> m_drum.drumMotorOff());
 
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_BACK)
-  .whenPressed(() -> m_drum.setDrumSpeed(-0.2))
-  .whenReleased(() -> m_drum.drumMotorOff());
+  //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_BACK)
+  //.whenPressed(()-> m_climber.setMotorSpeed(.2))
+  //.whenReleased(()-> m_climber.stopMotor());
 }
 
 

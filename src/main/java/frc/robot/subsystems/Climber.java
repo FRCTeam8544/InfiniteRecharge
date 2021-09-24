@@ -13,6 +13,7 @@ import frc.robot.Constants;
 public class Climber extends SubsystemBase {
   WPI_VictorSPX winchMotor;
 
+
   public Climber() {
     winchMotor = new WPI_VictorSPX(Constants.CLIMBER_WINCH_ARM_MOTOR_ID);
     // To Do: verify whether motor should be inverted during testing
@@ -21,8 +22,10 @@ public class Climber extends SubsystemBase {
 
   public double rampRate(double joystickPosition){
     // To Do: check whether .25 and .75 are the appropriate sensitivity values
-    double preClippedPower = (.25 * (joystickPosition) + .75 * (Math.pow(joystickPosition, 3)));
-    return preClippedPower < Constants.CLIMBER_CLIP_VALUE ? preClippedPower : Constants. CLIMBER_CLIP_VALUE;
+    // double preClippedPower = (.25 * (joystickPosition) + .75 * (Math.pow(joystickPosition, 3)));
+    double preClippedPower = joystickPosition > -Constants.CLIMBER_CLIP_VALUE ? joystickPosition : -Constants.CLIMBER_CLIP_VALUE;
+    preClippedPower = preClippedPower > 0 ? 0 : preClippedPower;
+    return preClippedPower;
   }
 
   public void setMotorSpeed (double speed){

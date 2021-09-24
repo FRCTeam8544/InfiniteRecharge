@@ -7,11 +7,13 @@ import frc.robot.RobotContainer;
 
 public class ClimberDefault extends CommandBase {
     Climber m_climber;
+   
 
 
     public ClimberDefault(Climber climber) {
         m_climber = climber;
         addRequirements(m_climber);
+       
     }
 
     @Override
@@ -22,7 +24,8 @@ public class ClimberDefault extends CommandBase {
         // HIDController joystick
         // To Do: Check whether getRawAxis(3) denotes right joystick vertical axis
         double rightVerticalPosition = RobotContainer.HIDController.getRawAxis(3);
-        m_climber.setMotorSpeed(rightVerticalPosition);
+        m_climber.setMotorSpeed(/*m_climber.rampRate*/rightVerticalPosition);
+
     }
 
     @Override
