@@ -63,8 +63,6 @@ public class RobotContainer {
   private final Command m_tankDrive = new TankDrive(m_driveTrain);
   //autonomous shooter routine
   private final Command m_autoShooterRoutine = new AutoShooterRoutine(m_drum, m_shooter, m_driveTrain);
-  //
-  private final Command m_navXJumper = new NavXTurnAngle(m_driveTrain, 90);
   //these are my joysticks --> define buttons under the configure button bindings
   //@should this be private??
   public static final Joystick leftDriveController = new Joystick(Constants.ROBOTCONTAINER_LEFT_DRIVE_CONTROLLER_PORT);
@@ -78,12 +76,8 @@ public class RobotContainer {
 
     //default commands for subsystems
     m_drum.setDefaultCommand(m_drumSpeed);
-    if (m_driveTrain.navXJumper.get() == !true) {
-      m_driveTrain.setDefaultCommand(m_navXJumper);
-    }
-    else {
-      m_driveTrain.setDefaultCommand(m_tankDrive);
-    }
+
+    m_driveTrain.setDefaultCommand(m_tankDrive);
   }
 
   /**
@@ -124,16 +118,16 @@ public class RobotContainer {
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_LEFT_BACK)
   .whenPressed(() -> m_drum.setDrumSpeed(0.2))
   .whenReleased(() -> m_drum.drumMotorOff());
-
+  //chained method calls modify the instance and return the [modified] instance
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_BACK)
   .whenPressed(() -> m_drum.setDrumSpeed(-0.2))
   .whenReleased(() -> m_drum.drumMotorOff());
 
   //testing whether navX sensors function properly by seeing if it turns designated amount
-  // TODO: assign button
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_B)
   .whenPressed(new NavXTurnAngle(m_driveTrain, 90));
-}
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

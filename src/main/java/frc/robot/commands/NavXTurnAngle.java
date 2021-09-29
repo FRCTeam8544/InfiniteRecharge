@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -17,7 +18,9 @@ public class NavXTurnAngle extends CommandBase {
   // Represents the intended change in yaw
   double deltaYaw;
   DriveTrain m_drivetrain;
-  AHRS ahrs; 
+  AHRS ahrs;
+  double currentYaw;
+  public static int navXexecutionCount = 0;
 
   // Assigning to the field the paramenter using "this." syntax
   public NavXTurnAngle(DriveTrain m_drivetrain, double deltaYaw) {
@@ -35,11 +38,13 @@ public class NavXTurnAngle extends CommandBase {
   @Override
   public void execute() {
     if (deltaYaw > 0) {
-      m_drivetrain.tankDrive(Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER, -Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER); 
+      m_drivetrain.tankDrive(-Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER, Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER); 
     }
     else {
-      m_drivetrain.tankDrive(-Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER, Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER);
+      m_drivetrain.tankDrive(Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER, -Constants.DRIVETRAIN_NAVX_TURN_TEST_POWER);
     }
+    SmartDashboard.putNumber("deltaYaw: ", deltaYaw);
+    SmartDashboard.putNumber("navXexecutionCount: ", navXexecutionCount++);
   }
 
   @Override
@@ -50,9 +55,15 @@ public class NavXTurnAngle extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    if (deltaYaw > 0 ? ahrs.getAngle() >= targetYaw : ahrs.getAngle() <= targetYaw) {
+    currentYaw = ahrs.getAngle();
+
+    if (deltaYaw > 0 ? currentYaw >= targetYaw : currentYaw <= targetYaw) {
+      SmartDashboard.putNumber("currentYaw at finished: ", currentYaw);
+      SmartDashboard.putNumber("targetYaw at finished: ", targetYaw);
       return true;
     }
+    SmartDashboard.putNumber("currentYaw: ", currentYaw);
+    SmartDashboard.putNumber("targetYaw: ", targetYaw);
     return false; 
   }
 }

@@ -29,7 +29,7 @@ public final class Constants {
     //drivetrain
     public static final double DRIVETRAIN_CLIP_VALUE = 1.0;
 
-    public static final double DRIVETRAIN_NAVX_TURN_TEST_POWER = 0.5;
+    public static final double DRIVETRAIN_NAVX_TURN_TEST_POWER = 0.3;
 
 	public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID = 5;
     public static final MotorType DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
@@ -101,6 +101,4 @@ public final class Constants {
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_TRIGGER = LOGITECH_BUTTON_RIGHT_TRIGGER;
     public static final int ROBOTCONTAINER_BUTTON_LEFT_BACK = LOGITECH_BUTTON_LEFT_BACK;
     public static final int ROBOTCONTAINER_BUTTON_RIGHT_BACK = LOGITECH_BUTTON_RIGHT_BACK;
-
-    public static final int DRIVETRAIN_NAVX_JUMPER_PORT = 3;
 	}
