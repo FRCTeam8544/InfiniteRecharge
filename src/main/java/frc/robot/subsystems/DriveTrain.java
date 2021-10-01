@@ -8,6 +8,7 @@ package frc.robot.subsystems;
 import net.thefletcher.revrobotics.CANEncoder;
 import net.thefletcher.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;

@@ -19,6 +19,7 @@ import frc.robot.commands.ShooterCommands.AutoShooterSpeed;
 import frc.robot.commands.AutoShooterRoutine;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.NavXTurnAngle;
 import frc.robot.commands.AutoDriveCommands.TurnAngle90;
 import frc.robot.commands.DemoModes.SlowDemoMode;
 import frc.robot.commands.DemoModes.TurnOnlyDemoMode;
@@ -110,9 +111,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
   //shooter wheel buttons --> each button has a pressed which turns it on and a released which turns it off (stop shooter method is in shooter subsystem)
   //each color corresponds to specific button on controller (I could also use letters but colors were easier to see from distance and easier to recognize right away)
-  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_B)
+  /*new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_B)
   .whenPressed(() -> m_shooter.setShooterSpeed("red"))
-  .whenReleased(() -> m_shooter.stopShooter());
+  .whenReleased(() -> m_shooter.stopShooter());*/
 
   new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_X)
   .whenPressed(() -> m_shooter.setShooterSpeed("blue"))
@@ -144,9 +145,13 @@ public class RobotContainer {
   //new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_RIGHT_BACK)
   //.whenPressed(()-> m_climber.setMotorSpeed(.2))
   //.whenReleased(()-> m_climber.stopMotor());
-}
 
 
+  //testing whether navX sensors function properly by seeing if it turns designated amount
+  new JoystickButton(HIDController, Constants.ROBOTCONTAINER_BUTTON_NUMBER_B)
+  .whenPressed(new NavXTurnAngle(m_driveTrain, 90));
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

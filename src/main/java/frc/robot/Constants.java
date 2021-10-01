@@ -29,6 +29,8 @@ public final class Constants {
     //drivetrain
     public static final double DRIVETRAIN_CLIP_VALUE = .5;
 
+    public static final double DRIVETRAIN_NAVX_TURN_TEST_POWER = 0.3;
+
 	public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_ID = 5;
     public static final MotorType DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR_MOTORTYPE = MotorType.kBrushless;
     
